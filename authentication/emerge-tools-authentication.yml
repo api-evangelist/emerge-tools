@@ -1,0 +1,15 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/emerge-tools-openapi.json
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: ApiKeyAuth
+  type: apiKey
+  in: header
+  parameter: X-API-Token
+  sources:
+  - openapi/emerge-tools-openapi.json
