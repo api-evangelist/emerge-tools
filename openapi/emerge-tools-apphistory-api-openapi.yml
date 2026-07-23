@@ -1,0 +1,74 @@
+openapi: 3.1.0
+info:
+  title: Emerge Analysis AppHistory API
+  description: The Emerge API allows you to access app size data for individual builds, including breakdowns of size by Swift module, framework, and Obj-C prefix.
+  version: 0.2.0
+  x-apievangelist:
+    generated: '2026-07-19'
+    method: searched
+    source: https://docs.emergetools.com/reference (per-operation OpenAPI 3.1.0 blocks merged)
+    note: Assembled from the 12 published /reference/*.md OpenAPI definition blocks on docs.emergetools.com; paths and components captured verbatim.
+servers:
+- url: https://api.emergetools.com/
+security:
+- ApiKeyAuth: []
+tags:
+- name: AppHistory
+paths:
+  /appHistory:
+    get:
+      summary: List (max of 10) of uploaded builds
+      parameters:
+      - name: appId
+        in: query
+        description: Bundle id of the app
+        required: true
+        schema:
+          type: string
+      - name: offset
+        in: query
+        description: Offset into the list of builds to start at, used for pagination.
+        schema:
+          type: integer
+      - name: buildType
+        in: query
+        description: Build type filter to only returns builds with the specified build type.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Build'
+      tags:
+      - AppHistory
+components:
+  schemas:
+    Build:
+      type: object
+      properties:
+        buildId:
+          type: string
+        appName:
+          type: string
+        appSize:
+          type: integer
+          format: int64
+        appVersion:
+          type: string
+        created:
+          type: string
+          format: date-time
+        appBuild:
+          type: string
+        buildType:
+          type: string
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      name: X-API-Token
+      in: header

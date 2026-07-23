@@ -1,0 +1,329 @@
+openapi: 3.1.0
+info:
+  title: Emerge Analysis Snapshots API
+  description: The Emerge API allows you to access app size data for individual builds, including breakdowns of size by Swift module, framework, and Obj-C prefix.
+  version: 0.2.0
+  x-apievangelist:
+    generated: '2026-07-19'
+    method: searched
+    source: https://docs.emergetools.com/reference (per-operation OpenAPI 3.1.0 blocks merged)
+    note: Assembled from the 12 published /reference/*.md OpenAPI definition blocks on docs.emergetools.com; paths and components captured verbatim.
+servers:
+- url: https://api.emergetools.com/
+security:
+- ApiKeyAuth: []
+tags:
+- name: Snapshots
+paths:
+  /v1/snapshots/skip:
+    post:
+      operationId: post_v1_snapshots_skip
+      summary: Skip snapshot run
+      description: Posts a successful Emerge Snapshots GitHub check for a given commit SHA, allowing the PR to merge without running a snapshot comparison. The check will show as completed with a note that it was skipped by the user. This is especially useful in monorepos where the snapshot status check is required but a given PR doesn't include any snapshot-relevant changes.
+      requestBody:
+        description: The commit to skip the snapshot check for
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - sha
+              - repo_name
+              properties:
+                sha:
+                  type: string
+                  description: The Git commit SHA to skip the snapshot check for
+                repo_name:
+                  type: string
+                  description: The full repository name (e.g., 'EmergeTools/hackernews')
+            examples:
+              basic:
+                summary: Skip snapshot check for a commit
+                value:
+                  sha: abc123def456
+                  repo_name: EmergeTools/hackernews
+      responses:
+        '200':
+          description: Success - snapshot check marked as skipped
+        '400':
+          description: Bad request - invalid request body or GitHub integration not configured
+        '500':
+          description: Internal server error - failed to post GitHub check
+      tags:
+      - Snapshots
+  /v2/snapshots/diff:
+    get:
+      operationId: get_v2_snapshots_diff
+      summary: Get snapshot comparison
+      description: Returns snapshot comparison data between two builds (head and base), including added, removed, changed, and unchanged snapshots. Can also return data for a single build if no base is specified.
+      parameters:
+      - name: headUploadId
+        in: query
+        description: The Emerge ID of the head (current) build to compare
+        required: true
+        schema:
+          type: string
+      - name: baseUploadId
+        in: query
+        description: The Emerge ID of the base build to compare against. If not provided and head upload has a base_sha, it will be automatically determined.
+        required: false
+        schema:
+          type: string
+      - name: noDiff
+        in: query
+        description: Set to 'true' to skip comparison and return only head build snapshots
+        required: false
+        schema:
+          type: string
+          enum:
+          - 'true'
+          - 'false'
+      - name: page
+        in: query
+        description: Page number for pagination (0-indexed)
+        required: false
+        schema:
+          type: integer
+          minimum: 0
+      - name: tab
+        in: query
+        description: Filter snapshots by change type
+        required: false
+        schema:
+          type: string
+          enum:
+          - added
+          - removed
+          - changed
+          - unchanged
+          - errors
+      - name: search
+        in: query
+        description: Search query to filter snapshots by name
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success - returns snapshot comparison data with status (SUCCESS, PROCESSING, or ERROR)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    enum:
+                    - SUCCESS
+                    - PROCESSING
+                    - ERROR
+                    description: The status of the snapshot comparison
+                  headUploadMetadata:
+                    type: object
+                    description: Metadata about the head build
+                  baseUploadMetadata:
+                    type: object
+                    description: Metadata about the base build (null if single-build view)
+                  added:
+                    type: array
+                    description: Snapshots added in head build
+                    items:
+                      $ref: '#/components/schemas/Snapshot'
+                  removed:
+                    type: array
+                    description: Snapshots removed in head build
+                    items:
+                      $ref: '#/components/schemas/Snapshot'
+                  changed:
+                    type: array
+                    description: Snapshots that changed between builds, including comparison data and diff images
+                    items:
+                      $ref: '#/components/schemas/SnapshotComparison'
+                  unchanged:
+                    type: array
+                    description: Snapshots that remained the same
+                    items:
+                      $ref: '#/components/schemas/Snapshot'
+                  errors:
+                    type: array
+                    description: Snapshots that failed to capture
+                    items:
+                      $ref: '#/components/schemas/Snapshot'
+                  message:
+                    type: string
+                    description: Message with additional context (present when status is PROCESSING or ERROR)
+        '400':
+          description: Bad request - invalid parameters
+        '404':
+          description: Build not found
+      tags:
+      - Snapshots
+  /v2/snapshots/ignore:
+    put:
+      operationId: put_v2_snapshots_ignore
+      summary: Mark snapshot difference as ignored
+      description: Marks a specific snapshot difference as ignored or unignored. When a snapshot difference is ignored, it will not trigger alerts or be counted as a change in snapshot comparisons.
+      requestBody:
+        description: The snapshot difference to ignore or unignore
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - headSnapshotId
+              - baseSnapshotId
+              - headImageId
+              - baseImageId
+              - ignored
+              properties:
+                headSnapshotId:
+                  type: string
+                  description: The ID of the head snapshot (prefixed with 'snap_', e.g., 'snap_abc123xyz')
+                baseSnapshotId:
+                  type: string
+                  description: The ID of the base snapshot (prefixed with 'snap_', e.g., 'snap_def456uvw')
+                headImageId:
+                  type: string
+                  description: The ID of the image in the head snapshot
+                baseImageId:
+                  type: string
+                  description: The ID of the image in the base snapshot
+                ignored:
+                  type: boolean
+                  description: Whether to ignore (true) or unignore (false) this snapshot difference
+            examples:
+              stringIdentifier:
+                summary: Using string identifiers
+                value:
+                  headSnapshotId: snap_abc123xyz
+                  baseSnapshotId: snap_def456uvw
+                  headImageId: MyScreenTest.snapshotTest
+                  baseImageId: MyScreenTest.snapshotTest
+                  ignored: true
+              uuidIdentifier:
+                summary: Using UUID identifiers
+                value:
+                  headSnapshotId: snap_abc123xyz
+                  baseSnapshotId: snap_def456uvw
+                  headImageId: 550e8400-e29b-41d4-a716-446655440000
+                  baseImageId: 6ba7b810-9dad-11d1-80b4-00c04fd430c8
+                  ignored: true
+      responses:
+        '200':
+          description: Success - snapshot difference ignore status updated
+        '400':
+          description: Bad request - missing required parameters or snapshots not found
+      tags:
+      - Snapshots
+components:
+  schemas:
+    Snapshot:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the snapshot (UUID)
+        identifier:
+          type: string
+          description: Human-readable identifier for the snapshot
+        additionalInfo:
+          type: object
+          properties:
+            id:
+              type: string
+          description: Additional metadata for the snapshot
+        height:
+          type: integer
+          description: Height of the snapshot image in pixels
+        width:
+          type: integer
+          description: Width of the snapshot image in pixels
+        title:
+          type: string
+          description: Display title for the snapshot
+        subtitle:
+          type: string
+          description: Display subtitle for the snapshot
+        badges:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+              type:
+                type: string
+          description: Array of badge metadata associated with the snapshot
+        isDarkMode:
+          type: boolean
+          description: Whether the snapshot was captured in dark mode
+        s3Prefix:
+          type: string
+          description: S3 prefix path for the snapshot
+        timeTaken:
+          type: number
+          description: Time taken to capture the snapshot in milliseconds
+        appStoreSnapshot:
+          type: boolean
+          description: Whether this snapshot is formatted for App Store submission
+        imageKey:
+          type: string
+          description: Key identifier for the image
+        imageUrl:
+          type: string
+          format: uri
+          description: Signed S3 URL to access the snapshot image
+    SnapshotComparison:
+      type: object
+      description: Comparison between head and base snapshots showing visual differences
+      properties:
+        headSnapshot:
+          $ref: '#/components/schemas/Snapshot'
+          description: The snapshot from the head build
+        baseSnapshot:
+          $ref: '#/components/schemas/Snapshot'
+          description: The snapshot from the base build
+        title:
+          type: string
+          description: Display title for the snapshot comparison
+        subtitle:
+          type: string
+          description: Display subtitle for the snapshot comparison
+        badges:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+              type:
+                type: string
+          description: Array of badge metadata associated with the snapshot
+        diffImageInfo:
+          type: object
+          properties:
+            imageUrl:
+              type: string
+              format: uri
+              description: Signed S3 URL to the visual diff image highlighting changes
+          description: Information about the diff image showing visual changes
+        height:
+          type: integer
+          description: Height of the comparison image in pixels
+        width:
+          type: integer
+          description: Width of the comparison image in pixels
+        ignored:
+          type: boolean
+          description: Whether this snapshot difference has been marked as ignored
+        diff:
+          type: number
+          format: float
+          description: Percentage difference between the snapshots (0-1 scale)
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      name: X-API-Token
+      in: header

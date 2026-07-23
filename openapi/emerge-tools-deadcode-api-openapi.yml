@@ -1,0 +1,133 @@
+openapi: 3.1.0
+info:
+  title: Emerge Analysis DeadCode API
+  description: The Emerge API allows you to access app size data for individual builds, including breakdowns of size by Swift module, framework, and Obj-C prefix.
+  version: 0.2.0
+  x-apievangelist:
+    generated: '2026-07-19'
+    method: searched
+    source: https://docs.emergetools.com/reference (per-operation OpenAPI 3.1.0 blocks merged)
+    note: Assembled from the 12 published /reference/*.md OpenAPI definition blocks on docs.emergetools.com; paths and components captured verbatim.
+servers:
+- url: https://api.emergetools.com/
+security:
+- ApiKeyAuth: []
+tags:
+- name: DeadCode
+paths:
+  /deadCode/export:
+    post:
+      summary: Export Reaper analysis results
+      description: Returns the Reaper analysis results for a given build. You can identify the build using either an uploadId OR a combination of platform, appId, and version.
+      parameters:
+      - name: uploadId
+        in: query
+        description: The Emerge ID of the build to analyze. Required if not using platform+appId+version combination.
+        required: false
+        schema:
+          type: string
+      - name: platform
+        in: query
+        description: The platform of the app ('ios' or 'android'). Required if not using uploadId.
+        required: false
+        schema:
+          type: string
+          enum:
+          - ios
+          - android
+      - name: appId
+        in: query
+        description: The bundle ID or package name of the app. Required if not using uploadId.
+        required: false
+        schema:
+          type: string
+      - name: version
+        in: query
+        description: The version of the app. Required if not using uploadId.
+        required: false
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: The current page to request data for in the event of pagination. Defaults to 1 if not specified.
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          default: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReaperExportResponse'
+      tags:
+      - DeadCode
+components:
+  schemas:
+    ReaperExportMetadata:
+      type: object
+      properties:
+        org_id:
+          type: string
+        generated_at:
+          type: string
+        enabled:
+          type: boolean
+        platform:
+          $ref: '#/components/schemas/Platform'
+        app_id:
+          type: string
+        version:
+          type: string
+      required:
+      - org_id
+      - generated_at
+      - enabled
+    Platform:
+      type: string
+      enum:
+      - ios
+      - android
+      description: The platform of the app (iOS or Android)
+    ReaperExportResponse:
+      type: object
+      properties:
+        metadata:
+          $ref: '#/components/schemas/ReaperExportMetadata'
+        dead_code:
+          type: array
+          items:
+            type: object
+            properties:
+              class_name:
+                type: string
+              seen:
+                type: boolean
+              paths:
+                type: object
+                additionalProperties: true
+        counts:
+          type: object
+          properties:
+            user_sessions:
+              type: number
+            seen_classes:
+              type: number
+            unseen_classes:
+              type: number
+        pagination:
+          type: object
+          properties:
+            current_page:
+              type: integer
+              description: The current page number of the paginated results
+            total_pages:
+              type: integer
+              description: The total number of pages available
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      name: X-API-Token
+      in: header

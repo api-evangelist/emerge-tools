@@ -1,0 +1,259 @@
+openapi: 3.1.0
+info:
+  title: Emerge Analysis API
+  description: The Emerge API allows you to access app size data for individual builds, including breakdowns of size by Swift module, framework, and Obj-C prefix.
+  version: 0.2.0
+  x-apievangelist:
+    generated: '2026-07-19'
+    method: searched
+    source: https://docs.emergetools.com/reference (per-operation OpenAPI 3.1.0 blocks merged)
+    note: Assembled from the 12 published /reference/*.md OpenAPI definition blocks on docs.emergetools.com; paths and components captured verbatim.
+servers:
+- url: https://api.emergetools.com/
+security:
+- ApiKeyAuth: []
+tags:
+- name: Analysis
+paths:
+  /analysis:
+    get:
+      summary: PR analysis data
+      description: Returns the app size analysis results and any performance test analysis results, as well as PR comments. This endpoint should be used in favor of `/comment`, as it provides a superset of the data. Further, instead of returning a 4xx response when it's not ready yet (which is what /comment does), it will return a 200 response and indicate within the JSON which jobs are still in progress. Must specify either `sha` or `emergeId`.
+      parameters:
+      - name: sha
+        in: query
+        description: The SHA of the new PR commit
+        schema:
+          type: string
+      - name: emergeId
+        in: query
+        description: The Emerge ID of the HEAD build.
+        schema:
+          type: string
+      - name: baseSha
+        in: query
+        description: The SHA of the merge base for the PR. If not present, the base SHA provided on upload will be used to determine the base build.
+        schema:
+          type: string
+      - name: baseEmergeId
+        in: query
+        description: The Emerge ID of the base build. If not present, the base SHA provided on upload will be used to determine the base build.
+        schema:
+          type: string
+      - name: platform
+        in: query
+        description: '''ios'' or ''android''. If multiple uploads are found for a sha (usually in the case of a monorepo), analysis for the first upload matching the platform will be returned. If not present and multiple uploads are found, an error will be thrown.'
+        schema:
+          type: string
+      - name: appId
+        in: query
+        description: Bundle or package id of the app - like com.example.app. If multiple uploads are found for a sha (usually in the case of a monorepo), analysis for the first upload matching the appId will be returned. If not present and multiple uploads are found, an error will be thrown.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AnalysisData'
+        '404':
+          description: Base or head build not found, or still processing
+          content: {}
+      tags:
+      - Analysis
+components:
+  schemas:
+    CommentData:
+      type: object
+      properties:
+        comment:
+          type: string
+        buildDetails:
+          type: object
+          properties:
+            baseBuildDetails:
+              type: object
+              properties:
+                appSize:
+                  type: integer
+                  format: int64
+                appDownloadSize:
+                  type: integer
+                  format: int64
+                appInstallSize:
+                  type: integer
+                  format: int64
+                appVersion:
+                  type: string
+                appBuild:
+                  type: string
+                url:
+                  type: string
+                emergeId:
+                  type: string
+            currentBuildDetails:
+              type: object
+              properties:
+                appSize:
+                  type: integer
+                  format: int64
+                appDownloadSize:
+                  type: integer
+                  format: int64
+                appInstallSize:
+                  type: integer
+                  format: int64
+                appVersion:
+                  type: string
+                appBuild:
+                  type: string
+                url:
+                  type: string
+                emergeId:
+                  type: string
+        buildComparison:
+          type: object
+          properties:
+            sizeDiff:
+              type: integer
+              format: int64
+            fileDiffs:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  sizeDiff:
+                    type: integer
+    AnalysisData:
+      type: object
+      properties:
+        headId:
+          type: string
+          description: The Emerge Id of the head build
+        baseId:
+          type: string
+          description: The Emerge Id of the base build
+        appSize:
+          type: object
+          allOf:
+          - type: object
+            properties:
+              status:
+                type: string
+                enum:
+                - PROCESSING
+                - ERROR
+                - DONE
+          - $ref: '#/components/schemas/CommentData'
+        performanceTests:
+          type: array
+          items:
+            $ref: '#/components/schemas/PerfTestData'
+        performanceTestInfo:
+          type: object
+          properties:
+            id:
+              type: string
+              description: testId for the performance test
+            status:
+              type: string
+              description: Can be 'PROCESSING', 'DONE', or 'ERROR'
+    PerfTestBuildDetails:
+      type: object
+      properties:
+        samples:
+          type: array
+          description: Data on each individual test recorded.
+          items:
+            type: object
+            properties:
+              userInfo:
+                type: object
+                properties: {}
+                description: Custom object passed through span notification that can contain additional debugging data.
+              timeTaken:
+                type: number
+                description: Time in seconds that this metric took. Note that this cannot be used for comparisons across multiple tests since the hardware running the app can change.
+            description: An individual test
+    PerfTestData:
+      required:
+      - className
+      - id
+      - name
+      - status
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+          description: The name of the span, unique per class
+        className:
+          type: string
+          description: The name of the class that this test is executed from.
+        status:
+          type: string
+          enum:
+          - PROCESSING
+          - ERROR
+          - DONE
+        reason:
+          type: string
+          description: If the status is ERROR this may contain a short description indicating the reason for the error
+        timeTaken:
+          type: number
+          description: Time in seconds taken to complete this span. Measured from when the span was requested to when results were available.
+        buildDetails:
+          type: object
+          properties:
+            baseBuildDetails:
+              $ref: '#/components/schemas/PerfTestBuildDetails'
+            currentBuildDetails:
+              $ref: '#/components/schemas/PerfTestBuildDetails'
+        buildComparison:
+          type: object
+          properties:
+            conclusion:
+              type: string
+              description: Overal conclusion from testing
+              enum:
+              - UNCHANGED
+              - REGRESSED
+              - IMPROVED
+              - INCONCLUSIVE
+            comment:
+              type: string
+              description: A summary of the performance test that could be used for a PR comment
+            percentChange:
+              type: number
+              description: Amount of change detected, if the conclusion is not REGRESSED or IMPROVED this field will still represented the difference in our testing but does not have statisitical significance.
+            intervals:
+              type: array
+              description: Confidence intervals for various p-values.
+              items:
+                type: object
+                properties:
+                  percentConfidence:
+                    type: number
+                    description: The probability (as a percentage) that the true difference is within this confidence interval.
+                  percentInterval:
+                    type: number
+                    description: The difference from the percentChange that is within this confidence interval. The interval is percentChange +/- percentInterval.
+                description: A single confidence interval
+        device:
+          type: object
+          properties:
+            model:
+              type: string
+              description: Model of the device that this performance test was executed on.
+            os:
+              type: string
+              description: Operating system version running on the device this performance test was executed on.
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      name: X-API-Token
+      in: header

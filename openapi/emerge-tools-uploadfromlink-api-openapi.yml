@@ -1,0 +1,85 @@
+openapi: 3.1.0
+info:
+  title: Emerge Analysis UploadFromLink API
+  description: The Emerge API allows you to access app size data for individual builds, including breakdowns of size by Swift module, framework, and Obj-C prefix.
+  version: 0.2.0
+  x-apievangelist:
+    generated: '2026-07-19'
+    method: searched
+    source: https://docs.emergetools.com/reference (per-operation OpenAPI 3.1.0 blocks merged)
+    note: Assembled from the 12 published /reference/*.md OpenAPI definition blocks on docs.emergetools.com; paths and components captured verbatim.
+servers:
+- url: https://api.emergetools.com/
+security:
+- ApiKeyAuth: []
+tags:
+- name: UploadFromLink
+paths:
+  /uploadFromLink:
+    post:
+      summary: Upload a build with a download link
+      description: Creates an upload object and initiates processing.
+      requestBody:
+        description: The upload to create
+        content:
+          '*/*':
+            schema:
+              type: object
+              properties:
+                prNumber:
+                  type: string
+                  description: For branch builds only. The PR number associated with this build, e.g. `123`.
+                branch:
+                  type: string
+                  description: For branch builds only. The branch name associated with this build, e.g. `main` or `feature/1234`.
+                sha:
+                  type: string
+                  description: The Git SHA of the commit associated with this build.
+                baseSha:
+                  type: string
+                  description: For branch builds only. The Git SHA of the base commit associated with this build, i.e. the commit you branched off of.
+                repoName:
+                  type: string
+                  description: The name of the repository associated with this build, e.g. `EmergeTools/hackernews`.
+                gitlabProjectId:
+                  type: string
+                tag:
+                  type: string
+                  description: A tag label to associate with this build. This is useful for grouping builds together, e.g. `release`, `debug`, or `pull-request`.
+                filename:
+                  type: string
+                  deprecated: true
+                  description: This field is no longer used.
+                buildType:
+                  type: string
+                  default: release
+                  deprecated: true
+                  description: This field has been renamed to `tag`.
+                appIdSuffix:
+                  type: string
+                  description: A suffix to append to the application ID to differentiate between different builds of the same app.
+                buildLink:
+                  type: string
+        required: false
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreatedUpload'
+      x-codegen-request-body-name: upload
+      tags:
+      - UploadFromLink
+components:
+  schemas:
+    CreatedUpload:
+      type: object
+      properties:
+        upload_id:
+          type: string
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      name: X-API-Token
+      in: header

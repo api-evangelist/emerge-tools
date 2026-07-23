@@ -1,0 +1,152 @@
+openapi: 3.1.0
+info:
+  title: Emerge Analysis GetPerfTest API
+  description: The Emerge API allows you to access app size data for individual builds, including breakdowns of size by Swift module, framework, and Obj-C prefix.
+  version: 0.2.0
+  x-apievangelist:
+    generated: '2026-07-19'
+    method: searched
+    source: https://docs.emergetools.com/reference (per-operation OpenAPI 3.1.0 blocks merged)
+    note: Assembled from the 12 published /reference/*.md OpenAPI definition blocks on docs.emergetools.com; paths and components captured verbatim.
+servers:
+- url: https://api.emergetools.com/
+security:
+- ApiKeyAuth: []
+tags:
+- name: GetPerfTest
+paths:
+  /getPerfTest:
+    get:
+      summary: Get performance test results
+      description: Given a test ID, get the performance test results for it
+      parameters:
+      - name: testId
+        in: query
+        description: The test ID, which is returned for example, as the test_id field from /runPerfTest
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: The status of the test. Note that `performanceTests` will be empty until the status is DONE.
+                    enum:
+                    - PROCESSING
+                    - DONE
+                  headId:
+                    type: string
+                    description: The Emerge Id of the head build
+                  baseId:
+                    type: string
+                    description: The Emerge Id of the base build
+                  performanceTests:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PerfTestData'
+      tags:
+      - GetPerfTest
+components:
+  schemas:
+    PerfTestBuildDetails:
+      type: object
+      properties:
+        samples:
+          type: array
+          description: Data on each individual test recorded.
+          items:
+            type: object
+            properties:
+              userInfo:
+                type: object
+                properties: {}
+                description: Custom object passed through span notification that can contain additional debugging data.
+              timeTaken:
+                type: number
+                description: Time in seconds that this metric took. Note that this cannot be used for comparisons across multiple tests since the hardware running the app can change.
+            description: An individual test
+    PerfTestData:
+      required:
+      - className
+      - id
+      - name
+      - status
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+          description: The name of the span, unique per class
+        className:
+          type: string
+          description: The name of the class that this test is executed from.
+        status:
+          type: string
+          enum:
+          - PROCESSING
+          - ERROR
+          - DONE
+        reason:
+          type: string
+          description: If the status is ERROR this may contain a short description indicating the reason for the error
+        timeTaken:
+          type: number
+          description: Time in seconds taken to complete this span. Measured from when the span was requested to when results were available.
+        buildDetails:
+          type: object
+          properties:
+            baseBuildDetails:
+              $ref: '#/components/schemas/PerfTestBuildDetails'
+            currentBuildDetails:
+              $ref: '#/components/schemas/PerfTestBuildDetails'
+        buildComparison:
+          type: object
+          properties:
+            conclusion:
+              type: string
+              description: Overal conclusion from testing
+              enum:
+              - UNCHANGED
+              - REGRESSED
+              - IMPROVED
+              - INCONCLUSIVE
+            comment:
+              type: string
+              description: A summary of the performance test that could be used for a PR comment
+            percentChange:
+              type: number
+              description: Amount of change detected, if the conclusion is not REGRESSED or IMPROVED this field will still represented the difference in our testing but does not have statisitical significance.
+            intervals:
+              type: array
+              description: Confidence intervals for various p-values.
+              items:
+                type: object
+                properties:
+                  percentConfidence:
+                    type: number
+                    description: The probability (as a percentage) that the true difference is within this confidence interval.
+                  percentInterval:
+                    type: number
+                    description: The difference from the percentChange that is within this confidence interval. The interval is percentChange +/- percentInterval.
+                description: A single confidence interval
+        device:
+          type: object
+          properties:
+            model:
+              type: string
+              description: Model of the device that this performance test was executed on.
+            os:
+              type: string
+              description: Operating system version running on the device this performance test was executed on.
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      name: X-API-Token
+      in: header
