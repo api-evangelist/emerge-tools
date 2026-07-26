@@ -1,0 +1,32 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/emerge-tools-openapi.json, https://docs.emergetools.com/docs/rest-api
+authentication:
+  style: api-key
+  location: header
+  parameter: X-API-Token
+  ref: authentication/emerge-tools-authentication.yml
+base_url: https://api.emergetools.com/
+idempotency:
+  supported: false
+  note: >-
+    No documented idempotency-key mechanism. Uploads are inherently keyed by (sha, buildType)
+    build identity rather than a client-supplied idempotency key.
+pagination:
+  style: none-documented
+  note: "/appHistory returns a fixed maximum of 10 most-recent builds; no cursor/offset params documented."
+upload_flow:
+  pattern: signed-url
+  note: >-
+    Two-step upload: POST /upload returns a signed S3 URL (uploadURL), then PUT the build artifact
+    (Content-Type application/zip) to that URL. Alternatively POST /uploadFromLink to pull from a download link.
+build_identity:
+  keys: [sha, emergeId, branch, prNumber, baseSha, previousSha, buildType]
+  note: Builds are addressed by Git sha or Emerge-assigned emergeId; comparisons use head vs base sha/emergeId.
+error_envelope:
+  format: generic-json
+  ref: errors/emerge-tools-problem-types.yml
+versioning:
+  ref: lifecycle/emerge-tools-lifecycle.yml
+rate_limiting:
+  signal: none-documented

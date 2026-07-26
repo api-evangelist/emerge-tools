@@ -1,0 +1,28 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/emerge-tools-openapi.json
+format: generic
+note: >-
+  Derived from the 4xx/5xx responses declared in the Emerge API OpenAPI. Responses
+  are plain JSON error objects (not application/problem+json / RFC 9457).
+problems:
+  - status: 400
+    title: Bad Request
+    description: Invalid or missing parameters in the request.
+    source_operations:
+      - openapi/emerge-tools-openapi.json#POST /v1/snapshots/skip
+      - openapi/emerge-tools-openapi.json#GET /v2/snapshots/diff
+      - openapi/emerge-tools-openapi.json#PUT /v2/snapshots/ignore
+  - status: 404
+    title: Not Found
+    description: >-
+      The requested build, analysis, or snapshot comparison was not found (e.g.
+      unknown sha / emergeId, or comparison data unavailable).
+    source_operations:
+      - openapi/emerge-tools-openapi.json#GET /analysis
+      - openapi/emerge-tools-openapi.json#GET /v2/snapshots/diff
+  - status: 500
+    title: Internal Server Error
+    description: An unexpected error occurred while processing the request.
+    source_operations:
+      - openapi/emerge-tools-openapi.json#POST /v1/snapshots/skip

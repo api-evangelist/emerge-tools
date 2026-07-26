@@ -1,0 +1,22 @@
+generated: '2026-07-19'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: emergetools.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct 11 14:01:27 2026 GMT
+  hsts: true
+  hsts_max_age: 0
+- host: api.emergetools.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct 11 14:01:27 2026 GMT
+  hsts: null
+domains:
+- domain: emergetools.com
+  dnssec: true
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: none

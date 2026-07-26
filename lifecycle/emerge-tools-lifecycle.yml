@@ -1,0 +1,24 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.emergetools.com/reference, openapi/emerge-tools-openapi.json
+versioning:
+  scheme: path-prefix
+  api_version: 0.2.0
+  notes: >-
+    Newer resources are namespaced under path prefixes (/v1/snapshots/*, /v2/snapshots/*);
+    the OpenAPI info version is 0.2.0.
+deprecation:
+  policy_url: null
+  observed:
+    - endpoint: /comment
+      note: "Formerly /getComment; usages of /getComment are still supported but will be deprecated in the future."
+    - endpoint: /analysis
+      note: "Recommended in favor of /comment, which it supersedes as a superset."
+    - product: Performance Analysis (real-device startup regression monitoring)
+      note: Deprecated per emergetools.com product listing.
+status_page: null
+sla:
+  url: null
+notes: >-
+  A status.emergetools.com subdomain exists but did not serve a valid page (TLS 525) at probe time,
+  so no StatusPage pointer is asserted. No formal dated changelog or deprecation policy page was found.

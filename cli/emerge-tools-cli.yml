@@ -1,0 +1,23 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.emergetools.com/docs/emerge-cli
+name: emerge
+description: The official CLI for Emerge Tools.
+install:
+  - method: rubygems
+    command: gem install emerge
+package: rubygems:emerge
+source_repo: https://github.com/EmergeTools/emerge-cli
+auth:
+  env: EMERGE_API_TOKEN
+  flag: --api-token
+commands:
+  - group: upload
+    subcommands:
+      - name: snapshots
+        invocation: emerge upload snapshots
+        description: Upload an image directory to Emerge's snapshot testing system.
+  - group: reaper
+    invocation: emerge reaper
+    description: Interactively examine and delete unused-code (Reaper) results.
+notes: Both commands accept -h for help; the CLI reads the API token from EMERGE_API_TOKEN or --api-token.

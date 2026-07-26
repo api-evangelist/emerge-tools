@@ -1,0 +1,63 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/emerge-tools-openapi.json
+entities:
+  - name: Build
+    id_field: buildId
+    description: An uploaded app build (iOS/Android) with size, version, and metadata.
+    key_fields: [buildId, appName, appVersion, appBuild, appSize, buildType, created]
+  - name: BuildDetails
+    description: Detailed size breakdown for a build, including per-module sizes.
+    key_fields: [buildId, appName, appVersion, appBuild, size, modules, tag]
+  - name: AnalysisData
+    description: PR analysis result comparing a head build to a base build.
+    key_fields: [headId, baseId, appSize, performanceTests, performanceTestInfo]
+    relationships:
+      - type: belongs_to
+        target: Build
+        via: headId
+      - type: belongs_to
+        target: Build
+        via: baseId
+      - type: has_many
+        target: PerfTestData
+        via: performanceTests
+  - name: PerfTestData
+    id_field: id
+    description: A single performance test result (span timing, device, status).
+    key_fields: [id, name, className, status, timeTaken, device, buildDetails, buildComparison]
+  - name: CommentData
+    description: PR comment payload for the difference between two builds.
+    key_fields: [comment, buildDetails, buildComparison]
+  - name: CreateUpload
+    id_field: upload_id
+    description: A created upload with the signed URL to send build data to.
+    key_fields: [upload_id, uploadURL]
+  - name: Snapshot
+    id_field: id
+    description: A single UI snapshot image with dimensions and metadata.
+    key_fields: [id, identifier, title, subtitle, height, width, isDarkMode, s3Prefix]
+  - name: SnapshotComparison
+    description: A head-vs-base snapshot comparison with diff info.
+    key_fields: [title, subtitle, diff, ignored, diffImageInfo]
+    relationships:
+      - type: has_one
+        target: Snapshot
+        via: headSnapshot
+      - type: has_one
+        target: Snapshot
+        via: baseSnapshot
+  - name: ReaperExportResponse
+    description: Reaper dead-code export with metadata, dead_code list, counts, pagination.
+    key_fields: [metadata, dead_code, counts, pagination]
+    relationships:
+      - type: has_one
+        target: ReaperExportMetadata
+        via: metadata
+  - name: ReaperExportMetadata
+    id_field: app_id
+    description: Metadata for a Reaper export (org, app, platform, version).
+    key_fields: [org_id, app_id, platform, version, generated_at, enabled]
+  - name: TraceDownload
+    description: A signed URL for downloading a performance trace.
+    key_fields: [url]

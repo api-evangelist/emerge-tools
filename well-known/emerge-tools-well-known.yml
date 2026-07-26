@@ -1,0 +1,22 @@
+generated: '2026-07-19'
+method: searched
+source: live probes of emergetools.com + api.emergetools.com /.well-known/*
+hosts:
+  - host: https://emergetools.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 302
+        note: redirects to http://www.emergetools.com/.well-known/security.txt (no valid RFC 9116 document served)
+      - path: /.well-known/ai-plugin.json
+        status: 302
+  - host: https://api.emergetools.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+notes: No valid /.well-known discovery documents were served. Emerge does publish an AI index at https://docs.emergetools.com/llms.txt (captured under llms/).

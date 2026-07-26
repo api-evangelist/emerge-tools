@@ -1,0 +1,12 @@
+generated: '2026-07-19'
+method: generated
+source: openapi/emerge-tools-openapi.json
+skills:
+  - file: emerge-tools-upload-and-analyze-build.md
+    name: Upload a build and read its size analysis
+    api: openapi/emerge-tools-openapi.json
+    operations: ["POST /upload", "POST /uploadFromLink", "GET /analysis", "GET /appHistory", "GET /buildDetails"]
+  - file: emerge-tools-review-snapshot-diffs.md
+    name: Review snapshot differences in a PR
+    api: openapi/emerge-tools-openapi.json
+    operations: ["GET /v2/snapshots/diff", "PUT /v2/snapshots/ignore", "POST /v1/snapshots/skip"]

@@ -1,0 +1,23 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Emerge API
+  version: 1.0.0
+extends: openapi/emerge-tools-openapi.json
+x-apievangelist:
+  generated: '2026-07-19'
+  method: generated
+  source: openapi/emerge-tools-openapi.json
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-provider: emerge-tools
+      x-apievangelist-category: mobile-app-optimization
+      x-api-base-url: https://api.emergetools.com/
+      x-authentication: authentication/emerge-tools-authentication.yml
+      x-conventions: conventions/emerge-tools-conventions.yml
+      x-error-catalog: errors/emerge-tools-problem-types.yml
+  - target: $.components.securitySchemes.ApiKeyAuth
+    update:
+      description: >-
+        Pass your Emerge API token in the X-API-Token header. Tokens are managed in the Emerge
+        dashboard and can also be provided to the CLI via the EMERGE_API_TOKEN environment variable.

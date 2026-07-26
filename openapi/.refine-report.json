@@ -1,0 +1,32 @@
+{
+  "provider": "emerge-tools",
+  "sources": [
+    "emerge-tools-analysis-api-openapi.yml",
+    "emerge-tools-apphistory-api-openapi.yml",
+    "emerge-tools-builddetails-api-openapi.yml",
+    "emerge-tools-comment-api-openapi.yml",
+    "emerge-tools-deadcode-api-openapi.yml",
+    "emerge-tools-getperftest-api-openapi.yml",
+    "emerge-tools-snapshots-api-openapi.yml",
+    "emerge-tools-trace-api-openapi.yml",
+    "emerge-tools-upload-api-openapi.yml",
+    "emerge-tools-uploadfromlink-api-openapi.yml"
+  ],
+  "outputs": [
+    "emerge-tools-analysis-api-openapi.yml",
+    "emerge-tools-apphistory-api-openapi.yml",
+    "emerge-tools-builddetails-api-openapi.yml",
+    "emerge-tools-comment-api-openapi.yml",
+    "emerge-tools-deadcode-api-openapi.yml",
+    "emerge-tools-getperftest-api-openapi.yml",
+    "emerge-tools-snapshots-api-openapi.yml",
+    "emerge-tools-trace-api-openapi.yml",
+    "emerge-tools-upload-api-openapi.yml",
+    "emerge-tools-uploadfromlink-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

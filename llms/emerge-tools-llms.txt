@@ -1,0 +1,101 @@
+# Emerge Tools Documentation
+
+> Experience the future of mobile development. Join top companies like DoorDash, Square & Duolingo who use Emerge Tools to deliver the best app performance to their users.
+
+## Guides
+- [Quickstart](https://docs.emergetools.com/docs/quickstart.md): Get started using Emerge Tools in under 5 minutes
+- [Uploading Basics](https://docs.emergetools.com/docs/uploading-basics.md)
+- [Integrating Into CI](https://docs.emergetools.com/docs/integrate-into-ci.md)
+- [Fastlane (iOS)](https://docs.emergetools.com/docs/fastlane.md): (5 minute setup time)
+- [Gradle Plugin (Android)](https://docs.emergetools.com/docs/gradle-plugin.md)
+- [GitHub Action (iOS)](https://docs.emergetools.com/docs/github-actions.md): (5 minute setup time)
+- [REST API](https://docs.emergetools.com/docs/rest-api.md)
+- [Travis CI](https://docs.emergetools.com/docs/travis-ci.md)
+- [Codemagic (iOS)](https://docs.emergetools.com/docs/codemagic.md)
+- [Xcode Cloud](https://docs.emergetools.com/docs/xcode-cloud.md): You can use the Fastlane action or HTTP API to upload builds as part of an Xcode Cloud workflow.
+- [Build metadata fields for CI](https://docs.emergetools.com/docs/metadata-fields-for-ci.md)
+- [Pull Request Comments](https://docs.emergetools.com/docs/pr-comment.md)
+- [GitHub App](https://docs.emergetools.com/docs/github.md): (2 minute setup time)
+- [GitLab](https://docs.emergetools.com/docs/gitlab.md)
+- [Bitbucket](https://docs.emergetools.com/docs/bitbucket.md)
+- [Status Checks](https://docs.emergetools.com/docs/status-checks.md)
+- [Slack Alerts](https://docs.emergetools.com/docs/slack.md): (2 minute setup time)
+- [Email Alerts](https://docs.emergetools.com/docs/email-alerts-weekly-digest.md): (1 minute setup time)
+- [Weekly Digests](https://docs.emergetools.com/docs/weekly-digests.md)
+- [FAQ](https://docs.emergetools.com/docs/frequently-asked-questions.md)
+- [Compare](https://docs.emergetools.com/docs/compare.md): Emerge's UX enables easy build to build comparisons
+- [Shareable Links](https://docs.emergetools.com/docs/shareable-links.md): Emerge enables users to create public links of their Size Analysis
+- [Linkmaps (iOS)](https://docs.emergetools.com/docs/linkmaps.md)
+- [Competitor Analysis](https://docs.emergetools.com/docs/competitor-analysis.md): Emerge let's you see how your app stacks up against others
+- [Crash Reporters (iOS)](https://docs.emergetools.com/docs/crash-reporters-ios.md)
+- [Toubleshooting integration issues](https://docs.emergetools.com/docs/emerge-metadata.md): Emerge Metadata provides key details about your builds, including version control information, PR associations, and debugging tools. If your GitHub integration isn't working as expected, the Emerge Metadata panel can help diagnose and resolve integration issues
+- [What is the "Other" row?](https://docs.emergetools.com/docs/what-is-the-other-row.md)
+- [Strip Binary Symbols (iOS)](https://docs.emergetools.com/docs/strip-binary-symbols.md)
+- [Unused Protocols (iOS)](https://docs.emergetools.com/docs/unused-protocols.md)
+- [Optimize Icons (iOS)](https://docs.emergetools.com/docs/optimize-icons.md)
+- [Compile Unit Attribution (iOS)](https://docs.emergetools.com/docs/compile-unit-attribution.md)
+- [Module and Dependency attribution (Android)](https://docs.emergetools.com/docs/module-dependency-attribution-android.md)
+- [Analyzing a SPM Framework (iOS)](https://docs.emergetools.com/docs/analyzing-a-spm-framework-ios.md)
+- [Overview](https://docs.emergetools.com/docs/snapshot-testing.md)
+- [iOS/macOS Snapshots](https://docs.emergetools.com/docs/ios-snapshots.md)
+- [Test bundles](https://docs.emergetools.com/docs/test-bundles.md): Uploading previews from outside your application
+- [Android Snapshots](https://docs.emergetools.com/docs/android-snapshots-v1.md): A full end-to-end snapshot testing suite, ready to go in 10 minutes
+- [Continuous Integration](https://docs.emergetools.com/docs/continuous-integration.md)
+- [Web interface](https://docs.emergetools.com/docs/web-interface.md)
+- [Reviewing diffs](https://docs.emergetools.com/docs/snapshot-management-diffing.md)
+- [Reducing flakes](https://docs.emergetools.com/docs/reducing-flakes.md)
+- [Excluding snapshots](https://docs.emergetools.com/docs/excluding-previews.md)
+- [Accessibility testing](https://docs.emergetools.com/docs/accessibility-testing.md)
+- [Local generation](https://docs.emergetools.com/docs/local-generation.md)
+- [Exporting snapshots](https://docs.emergetools.com/docs/exporting-snapshots.md)
+- [Preview gallery](https://docs.emergetools.com/docs/preview-gallery.md)
+- [Identifying Snapshots](https://docs.emergetools.com/docs/identifying-snapshots.md)
+- [Snapshot History](https://docs.emergetools.com/docs/snapshot-history.md): See Changes to Your Snapshots over Time
+- [Bring Your Own](https://docs.emergetools.com/docs/bring-your-own.md)
+- [Swift Snapshot Testing](https://docs.emergetools.com/docs/swift-snapshot-testing.md)
+- [Roborazzi](https://docs.emergetools.com/docs/roborazzi.md)
+- [Paparazzi](https://docs.emergetools.com/docs/paparazzi.md)
+- [Web Tracker](https://docs.emergetools.com/docs/web-tracker.md): Automatically monitor and track visual changes to any website
+- [Overview](https://docs.emergetools.com/docs/reaper.md): Reaper is an SDK on both iOS & Android to detect unused code in your app.
+- [Setup (iOS)](https://docs.emergetools.com/docs/reaper-setup.md)
+- [Setup (Android)](https://docs.emergetools.com/docs/reaper-setup-android.md): Get started using Reaper in Android in under 10 minutes
+- [Reaper AI](https://docs.emergetools.com/docs/reaper-ai.md): Automatically delete dead code from your app
+- [Using Reaper Data](https://docs.emergetools.com/docs/using-reaper-data.md)
+- [Rollout Strategy](https://docs.emergetools.com/docs/rollout-strategy.md): Best practices for rolling out Reaper to your users
+- [Overview](https://docs.emergetools.com/docs/build-distribution-overview.md)
+- [iOS Build Distribution](https://docs.emergetools.com/docs/ios-build-distribution.md)
+- [Android Build Distribution](https://docs.emergetools.com/docs/android-build-distribution.md)
+- [Setup SDK (Android)](https://docs.emergetools.com/docs/distribution-setup-android.md): Get started using Distribution for Android in under 10 minutes
+- [Alerts](https://docs.emergetools.com/docs/build-distribution-alerts.md)
+- [Order files (iOS)](https://docs.emergetools.com/docs/launch-booster-ios.md): A binary ordering service that can speed up launch times by up to 18%.
+- [Order File Integration](https://docs.emergetools.com/docs/order-file-validation.md)
+- [Overview](https://docs.emergetools.com/docs/performance-testing.md)
+- [iOS Performance Comparison](https://docs.emergetools.com/docs/ios-performance-testing.md)
+- [Android Performance Comparison](https://docs.emergetools.com/docs/android-performance-analysis.md)
+- [Startup Performance Analysis (Android)](https://docs.emergetools.com/docs/android-startup-performance-testing-1.md)
+- [Custom Flow Performance Analysis (Android)](https://docs.emergetools.com/docs/android-custom-flow-performance-testing.md)
+- [Viewing Perfetto Traces](https://docs.emergetools.com/docs/detailed-perfetto-traces.md)
+- [What is being measured?](https://docs.emergetools.com/docs/what-is-being-measured.md)
+- [Performance Profile](https://docs.emergetools.com/docs/performance-profile.md)
+- [Variance control](https://docs.emergetools.com/docs/variance-control.md)
+- [Monitoring Network Requests](https://docs.emergetools.com/docs/monitoring-network-requests.md)
+- [Understanding Inconclusive Results](https://docs.emergetools.com/docs/understanding-inconclusive-results.md)
+- [ETTrace (iOS)](https://docs.emergetools.com/docs/performance-debugging.md)
+- [Google Workspace](https://docs.emergetools.com/docs/google-workspace.md)
+- [Integrate Emerge Snapshots for Android with Github Actions](https://docs.emergetools.com/docs/integrate-emerge-android-snapshots-with-github-actions.md)
+- [Integrate Emerge Snapshots for iOS with Github Actions](https://docs.emergetools.com/docs/integrate-emerge-ios-snapshots-with-github-actions.md)
+- [Emerge CLI](https://docs.emergetools.com/docs/emerge-cli.md): The official CLI for Emerge Tools.
+
+## API Reference
+- [PR analysis data](https://docs.emergetools.com/reference/get_analysis.md): Returns the app size analysis results and any performance test analysis results, as well as PR comments. This endpoint should be used in favor of `/comment`, as it provides a superset of the data. Further, instead of returning a 4xx response when it's not ready yet (which is what /comment does), it will return a 200 response and indicate within the JSON which jobs are still in progress. Must specify either `sha` or `emergeId`.
+- [List (max of 10) of uploaded builds](https://docs.emergetools.com/reference/get_apphistory-1.md)
+- [get](https://docs.emergetools.com/reference/get_builddetails-1.md)
+- [PR comment message](https://docs.emergetools.com/reference/get_comment.md): Get PR comment contents for the difference between two builds.   _Note: Formerly `/getComment`, usages of `/getComment` are still supported but will be deprecated in the future._
+- [Request a signed URL for downloading a trace](https://docs.emergetools.com/reference/post_trace.md): Creates a URL for downloading the trace associated with a particular iteration of a performance test span (if available).
+- [Get performance test results](https://docs.emergetools.com/reference/get_getperftest.md): Given a test ID, get the performance test results for it
+- [Request a signed URL for upload](https://docs.emergetools.com/reference/post_upload.md): Creates a new upload and returns a signed URL to send the upload data.
+- [Upload a build with a download link](https://docs.emergetools.com/reference/post_uploadfromlink.md): Creates an upload object and initiates processing.
+- [Get snapshot comparison](https://docs.emergetools.com/reference/get_v2_snapshots_diff.md): Returns snapshot comparison data between two builds (head and base), including added, removed, changed, and unchanged snapshots. Can also return data for a single build if no base is specified.
+- [Mark snapshot difference as ignored](https://docs.emergetools.com/reference/put_v2_snapshots_ignore.md): Marks a specific snapshot difference as ignored or unignored. When a snapshot difference is ignored, it will not trigger alerts or be counted as a change in snapshot comparisons.
+- [Skip snapshot check](https://docs.emergetools.com/reference/post_v1_snapshots_skip.md): Posts a successful Emerge Snapshots GitHub check for a given commit SHA, allowing the PR to merge without running a snapshot comparison. The check will show as completed with a note that it was skipped by the user. This is especially useful in monorepos where the snapshot status check is required but a given PR doesn't include any snapshot-relevant changes.
+- [Export Reaper analysis results](https://docs.emergetools.com/reference/post_deadcode-export.md): Returns the Reaper analysis results for a given build

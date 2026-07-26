@@ -1,0 +1,41 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.emergetools.com/docs/emerge-cli, https://rubygems.org, https://repo1.maven.org/maven2/com/emergetools/, https://github.com/EmergeTools
+packages:
+  - language: ruby
+    registry: rubygems
+    name: emerge
+    url: https://rubygems.org/gems/emerge
+    install: gem install emerge
+    source: https://github.com/EmergeTools/emerge-cli
+    description: The official CLI for Emerge Tools (upload snapshots, run Reaper).
+    official: true
+  - language: ruby
+    registry: rubygems
+    name: fastlane-plugin-emerge
+    url: https://rubygems.org/gems/fastlane-plugin-emerge
+    install: fastlane add_plugin emerge
+    source: https://github.com/EmergeTools/fastlane-plugin-emerge
+    description: Fastlane plugin to upload iOS builds to Emerge Tools.
+    official: true
+  - language: kotlin
+    registry: maven-central
+    name: com.emergetools.snapshots:snapshots
+    url: https://repo1.maven.org/maven2/com/emergetools/snapshots/
+    install: implementation("com.emergetools.snapshots:snapshots:<version>")
+    description: Android Snapshots SDK (also snapshots-annotations, -processor, -runtime, -shared).
+    official: true
+  - language: kotlin
+    registry: maven-central
+    name: com.emergetools.reaper:reaper
+    url: https://repo1.maven.org/maven2/com/emergetools/reaper/
+    install: implementation("com.emergetools.reaper:reaper:<version>")
+    description: Reaper Android SDK for detecting unused code at runtime.
+    official: true
+  - language: typescript
+    registry: github-actions
+    name: EmergeTools/emerge-upload-action
+    url: https://github.com/EmergeTools/emerge-upload-action
+    install: uses EmergeTools/emerge-upload-action@v1
+    description: GitHub Action to upload builds to Emerge Tools in CI.
+    official: true

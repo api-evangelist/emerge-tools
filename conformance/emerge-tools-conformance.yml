@@ -1,0 +1,22 @@
+generated: '2026-07-19'
+method: searched
+source: >-
+  openapi/emerge-tools-openapi.json (derived) + https://www.emergetools.com/security (compliance claims)
+standards:
+  - id: soc2-type1
+    conforms: true
+    evidence: "SOC 2 Type 1 certified; infrastructure continuously monitored via Drata (emergetools.com/security)."
+  - id: oauth2
+    conforms: false
+    evidence: API uses apiKey (X-API-Token header) auth, not OAuth 2.0.
+  - id: openid-connect
+    conforms: false
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: Error responses are plain JSON, not application/problem+json.
+  - id: openapi-3.1
+    conforms: true
+    evidence: Emerge API is published as OpenAPI 3.1.0.
+  - id: tls-in-transit
+    conforms: true
+    evidence: "All data transfer secured over HTTPS; uploads encrypted at rest in S3 (emergetools.com/security)."

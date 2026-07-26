@@ -1,0 +1,16 @@
+generated: '2026-07-19'
+method: searched
+probe: true
+url: https://www.emergetools.com/security
+certifications:
+  - SOC 2 Type 1
+monitoring:
+  - Drata (continuous control monitoring)
+data_handling:
+  note: >-
+    Emerge processes build outputs (xcarchive, dSYM) only; states it does not access source code or
+    end-user information. Uploads encrypted at rest in S3; all transfer over HTTPS.
+evidence:
+  - source: https://www.emergetools.com/security
+    keywords: [soc 2 type 1, drata, encrypted at rest, https]
+notes: No dedicated trust.emergetools.com subdomain; the /security page serves the trust/compliance posture.
