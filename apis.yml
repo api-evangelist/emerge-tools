@@ -228,6 +228,8 @@ apis:
   - type: DataModel
     url: data-model/emerge-tools-data-model.yml
 common:
+- type: Overlay
+  url: overlays/emerge-tools-openapi-overlay.yaml
 # --- identity / discoverability ---
 - type: Website
   url: https://emergetools.com
