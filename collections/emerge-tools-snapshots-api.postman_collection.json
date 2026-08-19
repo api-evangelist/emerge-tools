@@ -1,0 +1,662 @@
+{
+  "item": [
+    {
+      "id": "59160fea-9089-489b-b1d1-1ff42fbb2dbc",
+      "name": "Snapshots",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ecfce28c-90a9-4f96-8cdd-d53b44d04109",
+          "name": "Skip snapshot run",
+          "request": {
+            "name": "Skip snapshot run",
+            "description": {
+              "content": "Posts a successful Emerge Snapshots GitHub check for a given commit SHA, allowing the PR to merge without running a snapshot comparison. The check will show as completed with a note that it was skipped by the user. This is especially useful in monorepos where the snapshot status check is required but a given PR doesn't include any snapshot-relevant changes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "snapshots",
+                "skip"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sha\": \"<string>\",\n  \"repo_name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fc6d19a2-9265-4c73-91fc-0aa66170f5d0",
+              "name": "Success - snapshot check marked as skipped",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "snapshots",
+                    "skip"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sha\": \"abc123def456\",\n  \"repo_name\": \"EmergeTools/hackernews\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "569dc152-bd6d-4b86-801f-4a2a978ce573",
+              "name": "Bad request - invalid request body or GitHub integration not configured",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "snapshots",
+                    "skip"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sha\": \"abc123def456\",\n  \"repo_name\": \"EmergeTools/hackernews\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ee051865-3e93-413f-8066-9300b07cf1ea",
+              "name": "Internal server error - failed to post GitHub check",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "snapshots",
+                    "skip"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sha\": \"abc123def456\",\n  \"repo_name\": \"EmergeTools/hackernews\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2b4d75e2-227e-4de5-b3ac-aba6d74741cb",
+          "name": "Get snapshot comparison",
+          "request": {
+            "name": "Get snapshot comparison",
+            "description": {
+              "content": "Returns snapshot comparison data between two builds (head and base), including added, removed, changed, and unchanged snapshots. Can also return data for a single build if no base is specified.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "snapshots",
+                "diff"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "headUploadId",
+                  "value": "<string>",
+                  "description": "(Required) The Emerge ID of the head (current) build to compare"
+                },
+                {
+                  "disabled": false,
+                  "key": "baseUploadId",
+                  "value": "<string>",
+                  "description": "The Emerge ID of the base build to compare against. If not provided and head upload has a base_sha, it will be automatically determined."
+                },
+                {
+                  "disabled": false,
+                  "key": "noDiff",
+                  "value": "<string>",
+                  "description": "Set to 'true' to skip comparison and return only head build snapshots"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Page number for pagination (0-indexed)"
+                },
+                {
+                  "disabled": false,
+                  "key": "tab",
+                  "value": "<string>",
+                  "description": "Filter snapshots by change type"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Search query to filter snapshots by name"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b67af2b4-09cf-4e86-9e53-49f2f9468519",
+              "name": "Success - returns snapshot comparison data with status (SUCCESS, PROCESSING, or ERROR)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "snapshots",
+                    "diff"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "headUploadId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "baseUploadId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "noDiff",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "tab",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"ERROR\",\n  \"headUploadMetadata\": {},\n  \"baseUploadMetadata\": {},\n  \"added\": [\n    {\n      \"id\": \"string\",\n      \"identifier\": \"string\",\n      \"additionalInfo\": {\n        \"id\": \"string\"\n      },\n      \"height\": 8481,\n      \"width\": 1111,\n      \"title\": \"string\",\n      \"subtitle\": \"string\",\n      \"badges\": [\n        {\n          \"title\": \"string\",\n          \"type\": \"string\"\n        },\n        {\n          \"title\": \"string\",\n          \"type\": \"string\"\n        }\n      ],\n      \"isDarkMode\": false,\n      \"s3Prefix\": \"string\",\n      \"timeTaken\": 8275.54259922746,\n      \"appStoreSnapshot\": false,\n      \"imageKey\": \"string\",\n      \"imageUrl\": \"https://bvsUguzPcIhjwKAM.ifyQKzf6Q4BpfOjksCKbnSkyyZR1IYkPhr3OxmJArDqeC6gauBO.PK,7.z2iW\"\n    },\n    {\n      \"id\": \"string\",\n      \"identifier\": \"string\",\n      \"additionalInfo\": {\n        \"id\": \"string\"\n      },\n      \"height\": 2409,\n      \"width\": 4362,\n      \"title\": \"string\",\n      \"subtitle\": \"string\",\n      \"badges\": [\n        {\n          \"title\": \"string\",\n          \"type\": \"string\"\n        },\n        {\n          \"title\": \"string\",\n          \"type\": \"string\"\n        }\n      ],\n      \"isDarkMode\": true,\n      \"s3Prefix\": \"string\",\n      \"timeTaken\": 5252.142900282453,\n      \"appStoreSnapshot\": true,\n      \"imageKey\": \"string\",\n      \"imageUrl\": \"http://Dqjoukmnblo.dlksSKCAaC.E1N1Ap-ja1PghnX\"\n    }\n  ],\n  \"removed\": [\n    {\n      \"id\": \"string\",\n      \"identifier\": \"string\",\n      \"additionalInfo\": {\n        \"id\": \"string\"\n      },\n      \"height\": 4182,\n      \"width\": 8495,\n      \"title\": \"string\",\n      \"subtitle\": \"string\",\n      \"badges\": [\n        {\n          \"title\": \"string\",\n          \"type\": \"string\"\n        },\n        {\n          \"title\": \"string\",\n          \"type\": \"string\"\n        }\n      ],\n      \"isDarkMode\": true,\n      \"s3Prefix\": \"string\",\n      \"timeTaken\": 5953.850352700353,\n      \"appStoreSnapshot\": true,\n      \"imageKey\": \"string\",\n      \"imageUrl\": \"https://uJUvSgTzCyezoATFMTJmnxSN.jxLdY7NUmLgyBQwtbvq+zj9CiFbIhE-sdw-dblfzaoyGT6QeCSu8MIf\"\n    },\n    {\n      \"id\": \"string\",\n      \"identifier\": \"string\",\n      \"additionalInfo\": {\n        \"id\": \"string\"\n      },\n      \"height\": 3553,\n      \"width\": 3209,\n      \"title\": \"string\",\n      \"subtitle\": \"string\",\n      \"badges\": [\n        {\n          \"title\": \"string\",\n          \"type\": \"string\"\n        },\n        {\n          \"title\": \"string\",\n          \"type\": \"string\"\n        }\n      ],\n      \"isDarkMode\": true,\n      \"s3Prefix\": \"string\",\n      \"timeTaken\": 6930.910748737655,\n      \"appStoreSnapshot\": false,\n      \"imageKey\": \"string\",\n      \"imageUrl\": \"https://tlzYNGdRbRCNcWuemcrRDszBf.xvxHXeqkmY2VnnestQS5HFyONidkRsCcjamjcJp26GhPsP.mtWjoTk\"\n    }\n  ],\n  \"changed\": [\n    {\n      \"headSnapshot\": {\n        \"id\": \"string\",\n        \"identifier\": \"string\",\n        \"additionalInfo\": {\n          \"id\": \"string\"\n        },\n        \"height\": 8785,\n        \"width\": 86,\n        \"title\": \"string\",\n        \"subtitle\": \"string\",\n        \"badges\": [\n          {\n            \"title\": \"string\",\n            \"type\": \"string\"\n          },\n          {\n            \"title\": \"string\",\n            \"type\": \"string\"\n          }\n        ],\n        \"isDarkMode\": false,\n        \"s3Prefix\": \"string\",\n        \"timeTaken\": 9710.317124387968,\n        \"appStoreSnapshot\": true,\n        \"imageKey\": \"string\",\n        \"imageUrl\": \"http://l.dkzXJQzY\"\n      },\n      \"baseSnapshot\": {\n        \"id\": \"string\",\n        \"identifier\": \"string\",\n        \"additionalInfo\": {\n          \"id\": \"string\"\n        },\n        \"height\": 6746,\n        \"width\": 5772,\n        \"title\": \"string\",\n        \"subtitle\": \"string\",\n        \"badges\": [\n          {\n            \"title\": \"string\",\n            \"type\": \"string\"\n          },\n          {\n            \"title\": \"string\",\n            \"type\": \"string\"\n          }\n        ],\n        \"isDarkMode\": true,\n        \"s3Prefix\": \"string\",\n        \"timeTaken\": 9493.510051247511,\n        \"appStoreSnapshot\": false,\n        \"imageKey\": \"string\",\n        \"imageUrl\": \"http://raiBezuD.eeeZLxWJz5gDoz7W12t+t,\"\n      },\n      \"title\": \"string\",\n      \"subtitle\": \"string\",\n      \"badges\": [\n        {\n          \"title\": \"string\",\n          \"type\": \"string\"\n        },\n        {\n          \"title\": \"string\",\n          \"type\": \"string\"\n        }\n      ],\n      \"diffImageInfo\": {\n        \"imageUrl\": \"http://spovzIZIzPlKvGrkrEueShnTGRrFBxv.rtxT-6ExRjva35yzkZQO9Cw3LxnGQEvFr7fD75pxcITD3e-\"\n      },\n      \"height\": 3923,\n      \"width\": 6910,\n      \"ignored\": true,\n      \"diff\": 6027.335770400143\n    },\n    {\n      \"headSnapshot\": {\n        \"id\": \"string\",\n        \"identifier\": \"string\",\n        \"additionalInfo\": {\n          \"id\": \"string\"\n        },\n        \"height\": 3301,\n        \"width\": 3528,\n        \"title\": \"string\",\n        \"subtitle\": \"string\",\n        \"badges\": [\n          {\n            \"title\": \"string\",\n            \"type\": \"string\"\n          },\n          {\n            \"title\": \"string\",\n            \"type\": \"string\"\n          }\n        ],\n        \"isDarkMode\": false,\n        \"s3Prefix\": \"string\",\n        \"timeTaken\": 8713.185013573297,\n        \"appStoreSnapshot\": true,\n        \"imageKey\": \"string\",\n        \"imageUrl\": \"https://bFnLivjsrpRUtQTxQQwuNosOTEUAdaA.aecvilQd-MLICMpH,DBsVV5Z,,JF4qMbG5sk,H7vq5Jm2VKrmvuC5Z2htESdgh46S\"\n      },\n      \"baseSnapshot\": {\n        \"id\": \"string\",\n        \"identifier\": \"string\",\n        \"additionalInfo\": {\n          \"id\": \"string\"\n        },\n        \"height\": 1826,\n        \"width\": 2936,\n        \"title\": \"string\",\n        \"subtitle\": \"string\",\n        \"badges\": [\n          {\n            \"title\": \"string\",\n            \"type\": \"string\"\n          },\n          {\n            \"title\": \"string\",\n            \"type\": \"string\"\n          }\n        ],\n        \"isDarkMode\": true,\n        \"s3Prefix\": \"string\",\n        \"timeTaken\": 8483.472899750808,\n        \"appStoreSnapshot\": false,\n        \"imageKey\": \"string\",\n        \"imageUrl\": \"https://rtvFuNHbKtkCJqKjrZnxcVttYCoC.kmTfXu9tn62GI25M7CzJHUJhKYptoy0DKo7K-7UIn1Gr\"\n      },\n      \"title\": \"string\",\n      \"subtitle\": \"string\",\n      \"badges\": [\n        {\n          \"title\": \"string\",\n          \"type\": \"string\"\n        },\n        {\n          \"title\": \"string\",\n          \"type\": \"string\"\n        }\n      ],\n      \"diffImageInfo\": {\n        \"imageUrl\": \"http://nJtfEvOT.rwJifq,WTMtSm8.OF5Q0FykpMTJUbUE9\"\n      },\n      \"height\": 5177,\n      \"width\": 534,\n      \"ignored\": true,\n      \"diff\": 9924.119872000212\n    }\n  ],\n  \"unchanged\": [\n    {\n      \"id\": \"string\",\n      \"identifier\": \"string\",\n      \"additionalInfo\": {\n        \"id\": \"string\"\n      },\n      \"height\": 3140,\n      \"width\": 2353,\n      \"title\": \"string\",\n      \"subtitle\": \"string\",\n      \"badges\": [\n        {\n          \"title\": \"string\",\n          \"type\": \"string\"\n        },\n        {\n          \"title\": \"string\",\n          \"type\": \"string\"\n        }\n      ],\n      \"isDarkMode\": false,\n      \"s3Prefix\": \"string\",\n      \"timeTaken\": 2524.3153358532422,\n      \"appStoreSnapshot\": true,\n      \"imageKey\": \"string\",\n      \"imageUrl\": \"https://qWCRowPAVUyTEoffETbbicJqoqpodoa.rppkvRbU2,IMkIvQoMABKw.w9-uCxzejuSY0yBT1lx9JWypbYNA\"\n    },\n    {\n      \"id\": \"string\",\n      \"identifier\": \"string\",\n      \"additionalInfo\": {\n        \"id\": \"string\"\n      },\n      \"height\": 4196,\n      \"width\": 2066,\n      \"title\": \"string\",\n      \"subtitle\": \"string\",\n      \"badges\": [\n        {\n          \"title\": \"string\",\n          \"type\": \"string\"\n        },\n        {\n          \"title\": \"string\",\n          \"type\": \"string\"\n        }\n      ],\n      \"isDarkMode\": false,\n      \"s3Prefix\": \"string\",\n      \"timeTaken\": 6898.317658686772,\n      \"appStoreSnapshot\": true,\n      \"imageKey\": \"string\",\n      \"imageUrl\": \"http://MmjEuyTzAjXnxljGpPwpXeUltBRFAQNSz.bnjyAdRTMZuqeKgzyT0pjVg2iRYwLiSdPOpO1H3eMDpk0pyF.UleT47jHPe8Y,PD\"\n    }\n  ],\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"identifier\": \"string\",\n      \"additionalInfo\": {\n        \"id\": \"string\"\n      },\n      \"height\": 2683,\n      \"width\": 8743,\n      \"title\": \"string\",\n      \"subtitle\": \"string\",\n      \"badges\": [\n        {\n          \"title\": \"string\",\n          \"type\": \"string\"\n        },\n        {\n          \"title\": \"string\",\n          \"type\": \"string\"\n        }\n      ],\n      \"isDarkMode\": true,\n      \"s3Prefix\": \"string\",\n      \"timeTaken\": 5924.173128531771,\n      \"appStoreSnapshot\": true,\n      \"imageKey\": \"string\",\n      \"imageUrl\": \"http://bLsg.erawYhCEOD\"\n    },\n    {\n      \"id\": \"string\",\n      \"identifier\": \"string\",\n      \"additionalInfo\": {\n        \"id\": \"string\"\n      },\n      \"height\": 1847,\n      \"width\": 6122,\n      \"title\": \"string\",\n      \"subtitle\": \"string\",\n      \"badges\": [\n        {\n          \"title\": \"string\",\n          \"type\": \"string\"\n        },\n        {\n          \"title\": \"string\",\n          \"type\": \"string\"\n        }\n      ],\n      \"isDarkMode\": true,\n      \"s3Prefix\": \"string\",\n      \"timeTaken\": 8506.069374273102,\n      \"appStoreSnapshot\": true,\n      \"imageKey\": \"string\",\n      \"imageUrl\": \"https://gbxZk.zeSMjCwcHTTnSEAvywNhxb6SRS\"\n    }\n  ],\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1adf7034-d955-4086-afa2-92d361dd8838",
+              "name": "Bad request - invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "snapshots",
+                    "diff"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "headUploadId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "baseUploadId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "noDiff",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "tab",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b1cdd334-4bca-4a2c-ad57-471f4a2304c0",
+              "name": "Build not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "snapshots",
+                    "diff"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "headUploadId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "baseUploadId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "noDiff",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "tab",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8dfe08df-26f1-4832-bf24-5a424495546b",
+          "name": "Mark snapshot difference as ignored",
+          "request": {
+            "name": "Mark snapshot difference as ignored",
+            "description": {
+              "content": "Marks a specific snapshot difference as ignored or unignored. When a snapshot difference is ignored, it will not trigger alerts or be counted as a change in snapshot comparisons.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "snapshots",
+                "ignore"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"headSnapshotId\": \"<string>\",\n  \"baseSnapshotId\": \"<string>\",\n  \"headImageId\": \"<string>\",\n  \"baseImageId\": \"<string>\",\n  \"ignored\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9bef2205-6d78-4ab8-a592-acd561d6b306",
+              "name": "Success - snapshot difference ignore status updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "snapshots",
+                    "ignore"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"headSnapshotId\": \"snap_abc123xyz\",\n  \"baseSnapshotId\": \"snap_def456uvw\",\n  \"headImageId\": \"MyScreenTest.snapshotTest\",\n  \"baseImageId\": \"MyScreenTest.snapshotTest\",\n  \"ignored\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0cd750a6-b9a8-4c3d-a532-7be1540b3d05",
+              "name": "Bad request - missing required parameters or snapshots not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "snapshots",
+                    "ignore"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"headSnapshotId\": \"snap_abc123xyz\",\n  \"baseSnapshotId\": \"snap_def456uvw\",\n  \"headImageId\": \"MyScreenTest.snapshotTest\",\n  \"baseImageId\": \"MyScreenTest.snapshotTest\",\n  \"ignored\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.emergetools.com/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a68d753b-84bc-48d3-8a7d-1c6725fcf603",
+    "name": "Emerge Analysis Snapshots API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Emerge API allows you to access app size data for individual builds, including breakdowns of size by Swift module, framework, and Obj-C prefix.",
+      "type": "text/plain"
+    }
+  }
+}

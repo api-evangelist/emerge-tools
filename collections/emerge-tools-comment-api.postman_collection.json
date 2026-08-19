@@ -1,0 +1,149 @@
+{
+  "item": [
+    {
+      "id": "3a4da1cf-e6c7-4856-834c-71fde23a7ab0",
+      "name": "Comment",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9797da2a-c3d1-44d0-8666-f9d040bfcf2f",
+          "name": "PR comment message",
+          "request": {
+            "name": "PR comment message",
+            "description": {
+              "content": "Get PR comment contents for the difference between two builds.\n\n _Note: Formerly `/getComment`, usages of `/getComment` are still supported but will be deprecated in the future._",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "comment"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "buildId",
+                  "value": "<string>",
+                  "description": "(Required) Build id (aka head SHA) of the latest build with your changes. This is the same id passed to the Fastlane upload."
+                },
+                {
+                  "disabled": false,
+                  "key": "baseBuildId",
+                  "value": "<string>",
+                  "description": "(Required) Build id (aka base SHA) to compare your build with. This is the same id passed to the Fastlane upload."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2ee4d520-9b2d-418a-863c-eb94135c7d28",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "comment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "buildId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "baseBuildId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"comment\": \"string\",\n  \"buildDetails\": {\n    \"baseBuildDetails\": {\n      \"appSize\": 1938,\n      \"appDownloadSize\": 1879,\n      \"appInstallSize\": 2620,\n      \"appVersion\": \"string\",\n      \"appBuild\": \"string\",\n      \"url\": \"string\",\n      \"emergeId\": \"string\"\n    },\n    \"currentBuildDetails\": {\n      \"appSize\": 7810,\n      \"appDownloadSize\": 8872,\n      \"appInstallSize\": 2100,\n      \"appVersion\": \"string\",\n      \"appBuild\": \"string\",\n      \"url\": \"string\",\n      \"emergeId\": \"string\"\n    }\n  },\n  \"buildComparison\": {\n    \"sizeDiff\": 1572,\n    \"fileDiffs\": [\n      {\n        \"name\": \"string\",\n        \"sizeDiff\": 5267\n      },\n      {\n        \"name\": \"string\",\n        \"sizeDiff\": 6678\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.emergetools.com/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "81796c56-c9ca-470c-83d7-f3411fa7a477",
+    "name": "Emerge Analysis Comment API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Emerge API allows you to access app size data for individual builds, including breakdowns of size by Swift module, framework, and Obj-C prefix.",
+      "type": "text/plain"
+    }
+  }
+}

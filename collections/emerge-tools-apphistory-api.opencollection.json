@@ -1,0 +1,57 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Emerge Analysis AppHistory API",
+    "version": "0.2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Token",
+      "value": "{{X-API-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "AppHistory",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List (max of 10) of uploaded builds",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.emergetools.com/appHistory",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "query",
+                "description": "Bundle id of the app"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset into the list of builds to start at, used for pagination."
+              },
+              {
+                "name": "buildType",
+                "value": "",
+                "type": "query",
+                "description": "Build type filter to only returns builds with the specified build type."
+              }
+            ]
+          },
+          "docs": "List (max of 10) of uploaded builds"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

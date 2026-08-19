@@ -1,0 +1,253 @@
+{
+  "item": [
+    {
+      "id": "776fbcb6-df63-4e1e-a0b2-7f81845a55a3",
+      "name": "Analysis",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0cd50f28-c9ec-447d-a127-a2f7406d2fa1",
+          "name": "PR analysis data",
+          "request": {
+            "name": "PR analysis data",
+            "description": {
+              "content": "Returns the app size analysis results and any performance test analysis results, as well as PR comments. This endpoint should be used in favor of `/comment`, as it provides a superset of the data. Further, instead of returning a 4xx response when it's not ready yet (which is what /comment does), it will return a 200 response and indicate within the JSON which jobs are still in progress. Must specify either `sha` or `emergeId`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "analysis"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sha",
+                  "value": "<string>",
+                  "description": "The SHA of the new PR commit"
+                },
+                {
+                  "disabled": false,
+                  "key": "emergeId",
+                  "value": "<string>",
+                  "description": "The Emerge ID of the HEAD build."
+                },
+                {
+                  "disabled": false,
+                  "key": "baseSha",
+                  "value": "<string>",
+                  "description": "The SHA of the merge base for the PR. If not present, the base SHA provided on upload will be used to determine the base build."
+                },
+                {
+                  "disabled": false,
+                  "key": "baseEmergeId",
+                  "value": "<string>",
+                  "description": "The Emerge ID of the base build. If not present, the base SHA provided on upload will be used to determine the base build."
+                },
+                {
+                  "disabled": false,
+                  "key": "platform",
+                  "value": "<string>",
+                  "description": "'ios' or 'android'. If multiple uploads are found for a sha (usually in the case of a monorepo), analysis for the first upload matching the platform will be returned. If not present and multiple uploads are found, an error will be thrown."
+                },
+                {
+                  "disabled": false,
+                  "key": "appId",
+                  "value": "<string>",
+                  "description": "Bundle or package id of the app - like com.example.app. If multiple uploads are found for a sha (usually in the case of a monorepo), analysis for the first upload matching the appId will be returned. If not present and multiple uploads are found, an error will be thrown."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "91da5c79-1017-4c87-abca-dad8d41f1cd8",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "analysis"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sha",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "emergeId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "baseSha",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "baseEmergeId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "platform",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "appId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"headId\": \"string\",\n  \"baseId\": \"string\",\n  \"appSize\": {\n    \"status\": \"PROCESSING\",\n    \"comment\": \"string\",\n    \"buildDetails\": {\n      \"baseBuildDetails\": {\n        \"appSize\": 7764,\n        \"appDownloadSize\": 3796,\n        \"appInstallSize\": 8280,\n        \"appVersion\": \"string\",\n        \"appBuild\": \"string\",\n        \"url\": \"string\",\n        \"emergeId\": \"string\"\n      },\n      \"currentBuildDetails\": {\n        \"appSize\": 6845,\n        \"appDownloadSize\": 9273,\n        \"appInstallSize\": 9822,\n        \"appVersion\": \"string\",\n        \"appBuild\": \"string\",\n        \"url\": \"string\",\n        \"emergeId\": \"string\"\n      }\n    },\n    \"buildComparison\": {\n      \"sizeDiff\": 3502,\n      \"fileDiffs\": [\n        {\n          \"name\": \"string\",\n          \"sizeDiff\": 1303\n        },\n        {\n          \"name\": \"string\",\n          \"sizeDiff\": 3717\n        }\n      ]\n    }\n  },\n  \"performanceTests\": [\n    {\n      \"className\": \"string\",\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"status\": \"PROCESSING\",\n      \"reason\": \"string\",\n      \"timeTaken\": 493.23518005381374,\n      \"buildDetails\": {\n        \"baseBuildDetails\": {\n          \"samples\": [\n            {\n              \"userInfo\": {},\n              \"timeTaken\": 9329.662366367318\n            },\n            {\n              \"userInfo\": {},\n              \"timeTaken\": 6556.844743053476\n            }\n          ]\n        },\n        \"currentBuildDetails\": {\n          \"samples\": [\n            {\n              \"userInfo\": {},\n              \"timeTaken\": 2841.61232802971\n            },\n            {\n              \"userInfo\": {},\n              \"timeTaken\": 6987.023019694823\n            }\n          ]\n        }\n      },\n      \"buildComparison\": {\n        \"conclusion\": \"REGRESSED\",\n        \"comment\": \"string\",\n        \"percentChange\": 2752.517107239724,\n        \"intervals\": [\n          {\n            \"percentConfidence\": 9391.500547788733,\n            \"percentInterval\": 206.1091237031376\n          },\n          {\n            \"percentConfidence\": 6123.788427035386,\n            \"percentInterval\": 8138.820206756908\n          }\n        ]\n      },\n      \"device\": {\n        \"model\": \"string\",\n        \"os\": \"string\"\n      }\n    },\n    {\n      \"className\": \"string\",\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"status\": \"ERROR\",\n      \"reason\": \"string\",\n      \"timeTaken\": 4342.838342048425,\n      \"buildDetails\": {\n        \"baseBuildDetails\": {\n          \"samples\": [\n            {\n              \"userInfo\": {},\n              \"timeTaken\": 9452.598489217298\n            },\n            {\n              \"userInfo\": {},\n              \"timeTaken\": 8951.031828931444\n            }\n          ]\n        },\n        \"currentBuildDetails\": {\n          \"samples\": [\n            {\n              \"userInfo\": {},\n              \"timeTaken\": 295.4915821441517\n            },\n            {\n              \"userInfo\": {},\n              \"timeTaken\": 1098.89159712091\n            }\n          ]\n        }\n      },\n      \"buildComparison\": {\n        \"conclusion\": \"IMPROVED\",\n        \"comment\": \"string\",\n        \"percentChange\": 4232.198689716445,\n        \"intervals\": [\n          {\n            \"percentConfidence\": 6338.515431280442,\n            \"percentInterval\": 5026.556506625098\n          },\n          {\n            \"percentConfidence\": 1554.4001205685609,\n            \"percentInterval\": 9873.453160403138\n          }\n        ]\n      },\n      \"device\": {\n        \"model\": \"string\",\n        \"os\": \"string\"\n      }\n    }\n  ],\n  \"performanceTestInfo\": {\n    \"id\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "861d9b72-ed97-44a0-bb20-b1e2de709213",
+              "name": "Base or head build not found, or still processing",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "analysis"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sha",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "emergeId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "baseSha",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "baseEmergeId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "platform",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "appId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.emergetools.com/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "da99a459-e0e3-4cb7-9838-49bcf43ca393",
+    "name": "Emerge Analysis API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Emerge API allows you to access app size data for individual builds, including breakdowns of size by Swift module, framework, and Obj-C prefix.",
+      "type": "text/plain"
+    }
+  }
+}

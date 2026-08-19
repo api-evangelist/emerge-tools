@@ -1,0 +1,181 @@
+{
+  "item": [
+    {
+      "id": "045ecb52-d007-47f5-99c4-2afe5dac0f2e",
+      "name": "DeadCode",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "31e5f4cc-a27b-4960-b943-6904a76a86fb",
+          "name": "Export Reaper analysis results",
+          "request": {
+            "name": "Export Reaper analysis results",
+            "description": {
+              "content": "Returns the Reaper analysis results for a given build. You can identify the build using either an uploadId OR a combination of platform, appId, and version.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "deadCode",
+                "export"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "uploadId",
+                  "value": "<string>",
+                  "description": "The Emerge ID of the build to analyze. Required if not using platform+appId+version combination."
+                },
+                {
+                  "disabled": false,
+                  "key": "platform",
+                  "value": "<string>",
+                  "description": "The platform of the app ('ios' or 'android'). Required if not using uploadId."
+                },
+                {
+                  "disabled": false,
+                  "key": "appId",
+                  "value": "<string>",
+                  "description": "The bundle ID or package name of the app. Required if not using uploadId."
+                },
+                {
+                  "disabled": false,
+                  "key": "version",
+                  "value": "<string>",
+                  "description": "The version of the app. Required if not using uploadId."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "The current page to request data for in the event of pagination. Defaults to 1 if not specified."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f75fe87e-0c0c-4940-aa84-66e1e56b1989",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deadCode",
+                    "export"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "uploadId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "platform",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "appId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"metadata\": {\n    \"org_id\": \"string\",\n    \"generated_at\": \"string\",\n    \"enabled\": true,\n    \"platform\": \"ios\",\n    \"app_id\": \"string\",\n    \"version\": \"string\"\n  },\n  \"dead_code\": [\n    {\n      \"class_name\": \"string\",\n      \"seen\": false,\n      \"paths\": {\n        \"key_0\": \"string\",\n        \"key_1\": 4328.884229941913\n      }\n    },\n    {\n      \"class_name\": \"string\",\n      \"seen\": false,\n      \"paths\": {\n        \"key_0\": \"string\",\n        \"key_1\": 8478.769805853914,\n        \"key_2\": 3609.0271245784434\n      }\n    }\n  ],\n  \"counts\": {\n    \"user_sessions\": 2752.8311599150734,\n    \"seen_classes\": 7322.423570198623,\n    \"unseen_classes\": 8398.225060380644\n  },\n  \"pagination\": {\n    \"current_page\": 3936,\n    \"total_pages\": 3261\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.emergetools.com/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6561b54f-b71f-4d09-b48d-4dca25f16dd0",
+    "name": "Emerge Analysis DeadCode API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Emerge API allows you to access app size data for individual builds, including breakdowns of size by Swift module, framework, and Obj-C prefix.",
+      "type": "text/plain"
+    }
+  }
+}

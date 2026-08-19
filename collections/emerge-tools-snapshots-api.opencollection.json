@@ -1,0 +1,105 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Emerge Analysis Snapshots API",
+    "version": "0.2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Token",
+      "value": "{{X-API-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Snapshots",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Skip snapshot run",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.emergetools.com/v1/snapshots/skip",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Posts a successful Emerge Snapshots GitHub check for a given commit SHA, allowing the PR to merge without running a snapshot comparison. The check will show as completed with a note that it was skipped by the user. This is especially useful in monorepos where the snapshot status check is required but a given PR doesn't include any snapshot-relevant changes."
+        },
+        {
+          "info": {
+            "name": "Get snapshot comparison",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.emergetools.com/v2/snapshots/diff",
+            "params": [
+              {
+                "name": "headUploadId",
+                "value": "",
+                "type": "query",
+                "description": "The Emerge ID of the head (current) build to compare"
+              },
+              {
+                "name": "baseUploadId",
+                "value": "",
+                "type": "query",
+                "description": "The Emerge ID of the base build to compare against. If not provided and head upload has a base_sha, it will be automatically determined."
+              },
+              {
+                "name": "noDiff",
+                "value": "",
+                "type": "query",
+                "description": "Set to 'true' to skip comparison and return only head build snapshots"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination (0-indexed)"
+              },
+              {
+                "name": "tab",
+                "value": "",
+                "type": "query",
+                "description": "Filter snapshots by change type"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Search query to filter snapshots by name"
+              }
+            ]
+          },
+          "docs": "Returns snapshot comparison data between two builds (head and base), including added, removed, changed, and unchanged snapshots. Can also return data for a single build if no base is specified."
+        },
+        {
+          "info": {
+            "name": "Mark snapshot difference as ignored",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.emergetools.com/v2/snapshots/ignore",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Marks a specific snapshot difference as ignored or unignored. When a snapshot difference is ignored, it will not trigger alerts or be counted as a change in snapshot comparisons."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

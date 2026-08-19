@@ -1,0 +1,156 @@
+{
+  "item": [
+    {
+      "id": "4d83fe13-2d03-47c7-a230-6f1d07a3fd31",
+      "name": "AppHistory",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4e009dd9-a07a-4004-9457-a10a4e4712fd",
+          "name": "List (max of 10) of uploaded builds",
+          "request": {
+            "name": "List (max of 10) of uploaded builds",
+            "description": {},
+            "url": {
+              "path": [
+                "appHistory"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "appId",
+                  "value": "<string>",
+                  "description": "(Required) Bundle id of the app"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Offset into the list of builds to start at, used for pagination."
+                },
+                {
+                  "disabled": false,
+                  "key": "buildType",
+                  "value": "<string>",
+                  "description": "Build type filter to only returns builds with the specified build type."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d811ffa8-3e97-46ba-ae13-7048ffaa2702",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "appHistory"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "appId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "buildType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"buildId\": \"string\",\n    \"appName\": \"string\",\n    \"appSize\": 2487,\n    \"appVersion\": \"string\",\n    \"created\": \"1954-07-30T18:43:33.776Z\",\n    \"appBuild\": \"string\",\n    \"buildType\": \"string\"\n  },\n  {\n    \"buildId\": \"string\",\n    \"appName\": \"string\",\n    \"appSize\": 5029,\n    \"appVersion\": \"string\",\n    \"created\": \"2000-10-09T00:17:27.469Z\",\n    \"appBuild\": \"string\",\n    \"buildType\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.emergetools.com/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "060419af-6263-4353-9bcf-94795db3003a",
+    "name": "Emerge Analysis AppHistory API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Emerge API allows you to access app size data for individual builds, including breakdowns of size by Swift module, framework, and Obj-C prefix.",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Emerge Analysis Trace API",
+    "version": "0.2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Token",
+      "value": "{{X-API-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Trace",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Request a signed URL for downloading a trace",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.emergetools.com/trace"
+          },
+          "docs": "Creates a URL for downloading the trace associated with a particular iteration of a performance test span (if available)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

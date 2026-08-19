@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Emerge Analysis Upload API",
+    "version": "0.2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Token",
+      "value": "{{X-API-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Upload",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Request a signed URL for upload",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.emergetools.com/upload"
+          },
+          "docs": "Creates a new upload and returns a signed URL to send the upload data."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

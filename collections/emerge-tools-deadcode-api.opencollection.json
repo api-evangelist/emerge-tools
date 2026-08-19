@@ -1,0 +1,69 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Emerge Analysis DeadCode API",
+    "version": "0.2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Token",
+      "value": "{{X-API-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "DeadCode",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Export Reaper analysis results",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.emergetools.com/deadCode/export",
+            "params": [
+              {
+                "name": "uploadId",
+                "value": "",
+                "type": "query",
+                "description": "The Emerge ID of the build to analyze. Required if not using platform+appId+version combination."
+              },
+              {
+                "name": "platform",
+                "value": "",
+                "type": "query",
+                "description": "The platform of the app ('ios' or 'android'). Required if not using uploadId."
+              },
+              {
+                "name": "appId",
+                "value": "",
+                "type": "query",
+                "description": "The bundle ID or package name of the app. Required if not using uploadId."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query",
+                "description": "The version of the app. Required if not using uploadId."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The current page to request data for in the event of pagination. Defaults to 1 if not specified."
+              }
+            ]
+          },
+          "docs": "Returns the Reaper analysis results for a given build. You can identify the build using either an uploadId OR a combination of platform, appId, and version."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

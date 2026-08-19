@@ -1,0 +1,139 @@
+{
+  "item": [
+    {
+      "id": "255d7f67-f466-416d-8058-7415ef9b11d9",
+      "name": "GetPerfTest",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ebbf25d8-6c48-4260-842b-767dcd20542b",
+          "name": "Get performance test results",
+          "request": {
+            "name": "Get performance test results",
+            "description": {
+              "content": "Given a test ID, get the performance test results for it",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "getPerfTest"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "testId",
+                  "value": "<string>",
+                  "description": "(Required) The test ID, which is returned for example, as the test_id field from /runPerfTest"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a4c8342f-4571-4e5a-9117-bf4f914376b9",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "getPerfTest"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "testId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"DONE\",\n  \"headId\": \"string\",\n  \"baseId\": \"string\",\n  \"performanceTests\": [\n    {\n      \"className\": \"string\",\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"status\": \"DONE\",\n      \"reason\": \"string\",\n      \"timeTaken\": 8375.522871931204,\n      \"buildDetails\": {\n        \"baseBuildDetails\": {\n          \"samples\": [\n            {\n              \"userInfo\": {},\n              \"timeTaken\": 7876.460335895628\n            },\n            {\n              \"userInfo\": {},\n              \"timeTaken\": 4517.501235092205\n            }\n          ]\n        },\n        \"currentBuildDetails\": {\n          \"samples\": [\n            {\n              \"userInfo\": {},\n              \"timeTaken\": 8367.77540868432\n            },\n            {\n              \"userInfo\": {},\n              \"timeTaken\": 1406.746240167065\n            }\n          ]\n        }\n      },\n      \"buildComparison\": {\n        \"conclusion\": \"UNCHANGED\",\n        \"comment\": \"string\",\n        \"percentChange\": 6987.175109287017,\n        \"intervals\": [\n          {\n            \"percentConfidence\": 998.2064790736944,\n            \"percentInterval\": 5565.822413375492\n          },\n          {\n            \"percentConfidence\": 5477.049391582094,\n            \"percentInterval\": 9742.00151469962\n          }\n        ]\n      },\n      \"device\": {\n        \"model\": \"string\",\n        \"os\": \"string\"\n      }\n    },\n    {\n      \"className\": \"string\",\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"status\": \"PROCESSING\",\n      \"reason\": \"string\",\n      \"timeTaken\": 6011.670916240194,\n      \"buildDetails\": {\n        \"baseBuildDetails\": {\n          \"samples\": [\n            {\n              \"userInfo\": {},\n              \"timeTaken\": 9235.5735568531\n            },\n            {\n              \"userInfo\": {},\n              \"timeTaken\": 7710.394059683774\n            }\n          ]\n        },\n        \"currentBuildDetails\": {\n          \"samples\": [\n            {\n              \"userInfo\": {},\n              \"timeTaken\": 5239.607405067033\n            },\n            {\n              \"userInfo\": {},\n              \"timeTaken\": 3005.667222521696\n            }\n          ]\n        }\n      },\n      \"buildComparison\": {\n        \"conclusion\": \"UNCHANGED\",\n        \"comment\": \"string\",\n        \"percentChange\": 4598.954841194639,\n        \"intervals\": [\n          {\n            \"percentConfidence\": 105.42548737760393,\n            \"percentInterval\": 5296.408577647324\n          },\n          {\n            \"percentConfidence\": 2162.164714766401,\n            \"percentInterval\": 977.2503555031053\n          }\n        ]\n      },\n      \"device\": {\n        \"model\": \"string\",\n        \"os\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.emergetools.com/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "141eab3a-13c2-45e9-a53b-b4ae3e7618f4",
+    "name": "Emerge Analysis GetPerfTest API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Emerge API allows you to access app size data for individual builds, including breakdowns of size by Swift module, framework, and Obj-C prefix.",
+      "type": "text/plain"
+    }
+  }
+}

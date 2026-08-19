@@ -1,0 +1,138 @@
+{
+  "item": [
+    {
+      "id": "5fc668c2-b1b5-4743-8ce4-e2f570e568ed",
+      "name": "Upload",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cf5d9eae-2545-4b62-9302-0133e4bb6f09",
+          "name": "Request a signed URL for upload",
+          "request": {
+            "name": "Request a signed URL for upload",
+            "description": {
+              "content": "Creates a new upload and returns a signed URL to send the upload data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "upload"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "*/*"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"prNumber\": \"<string>\",\n  \"branch\": \"<string>\",\n  \"sha\": \"<string>\",\n  \"baseSha\": \"<string>\",\n  \"repoName\": \"<string>\",\n  \"gitlabProjectId\": \"<string>\",\n  \"tag\": \"<string>\",\n  \"filename\": \"<string>\",\n  \"buildType\": \"release\",\n  \"appIdSuffix\": \"<string>\",\n  \"releaseNotes\": \"<string>\",\n  \"orderFileVersion\": \"<string>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "636b9ec2-d48c-42e5-9d98-b44911bb0d2a",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "upload"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"prNumber\": \"<string>\",\n  \"branch\": \"<string>\",\n  \"sha\": \"<string>\",\n  \"baseSha\": \"<string>\",\n  \"repoName\": \"<string>\",\n  \"gitlabProjectId\": \"<string>\",\n  \"tag\": \"<string>\",\n  \"filename\": \"<string>\",\n  \"buildType\": \"release\",\n  \"appIdSuffix\": \"<string>\",\n  \"releaseNotes\": \"<string>\",\n  \"orderFileVersion\": \"<string>\"\n}"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"upload_id\": \"string\",\n  \"uploadURL\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.emergetools.com/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6da7da59-71cc-48ab-b61a-c79acb7240dc",
+    "name": "Emerge Analysis Upload API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Emerge API allows you to access app size data for individual builds, including breakdowns of size by Swift module, framework, and Obj-C prefix.",
+      "type": "text/plain"
+    }
+  }
+}

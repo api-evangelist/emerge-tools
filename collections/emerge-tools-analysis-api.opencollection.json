@@ -1,0 +1,75 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Emerge Analysis API",
+    "version": "0.2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Token",
+      "value": "{{X-API-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Analysis",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "PR analysis data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.emergetools.com/analysis",
+            "params": [
+              {
+                "name": "sha",
+                "value": "",
+                "type": "query",
+                "description": "The SHA of the new PR commit"
+              },
+              {
+                "name": "emergeId",
+                "value": "",
+                "type": "query",
+                "description": "The Emerge ID of the HEAD build."
+              },
+              {
+                "name": "baseSha",
+                "value": "",
+                "type": "query",
+                "description": "The SHA of the merge base for the PR. If not present, the base SHA provided on upload will be used to determine the base build."
+              },
+              {
+                "name": "baseEmergeId",
+                "value": "",
+                "type": "query",
+                "description": "The Emerge ID of the base build. If not present, the base SHA provided on upload will be used to determine the base build."
+              },
+              {
+                "name": "platform",
+                "value": "",
+                "type": "query",
+                "description": "'ios' or 'android'. If multiple uploads are found for a sha (usually in the case of a monorepo), analysis for the first upload matching the platform will be returned. If not present and multiple uploads are found, an error will be thrown."
+              },
+              {
+                "name": "appId",
+                "value": "",
+                "type": "query",
+                "description": "Bundle or package id of the app - like com.example.app. If multiple uploads are found for a sha (usually in the case of a monorepo), analysis for the first upload matching the appId will be returned. If not present and multiple uploads are found, an error will be thrown."
+              }
+            ]
+          },
+          "docs": "Returns the app size analysis results and any performance test analysis results, as well as PR comments. This endpoint should be used in favor of `/comment`, as it provides a superset of the data. Further, instead of returning a 4xx response when it's not ready yet (which is what /comment does), it will return a 200 response and indicate within the JSON which jobs are still in progress. Must specify either `sha` or `emergeId`."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,51 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Emerge Analysis Comment API",
+    "version": "0.2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Token",
+      "value": "{{X-API-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Comment",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "PR comment message",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.emergetools.com/comment",
+            "params": [
+              {
+                "name": "buildId",
+                "value": "",
+                "type": "query",
+                "description": "Build id (aka head SHA) of the latest build with your changes. This is the same id passed to the Fastlane upload."
+              },
+              {
+                "name": "baseBuildId",
+                "value": "",
+                "type": "query",
+                "description": "Build id (aka base SHA) to compare your build with. This is the same id passed to the Fastlane upload."
+              }
+            ]
+          },
+          "docs": "Get PR comment contents for the difference between two builds.\n\n _Note: Formerly `/getComment`, usages of `/getComment` are still supported but will be deprecated in the future._"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

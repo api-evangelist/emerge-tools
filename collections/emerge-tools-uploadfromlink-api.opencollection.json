@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Emerge Analysis UploadFromLink API",
+    "version": "0.2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Token",
+      "value": "{{X-API-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "UploadFromLink",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Upload a build with a download link",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.emergetools.com/uploadFromLink"
+          },
+          "docs": "Creates an upload object and initiates processing."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

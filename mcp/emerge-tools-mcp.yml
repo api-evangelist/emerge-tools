@@ -6,43 +6,49 @@ server:
   name: emerge-tools
   transport: http
   url: null
-note: >-
-  No official hosted/remote MCP server was found for Emerge Tools. The tools below are candidate
-  mappings derived one-per-operation from the published Emerge API OpenAPI (X-API-Token apiKey auth).
+note: No official hosted/remote MCP server was found for Emerge Tools. The tools below are candidate mappings
+  derived one-per-operation from the published Emerge API OpenAPI (X-API-Token apiKey auth).
 tools:
-  - name: get_pr_analysis
-    description: Get app size analysis + performance results and PR comment data for a build (by sha or emergeId).
-    source_operation: openapi/emerge-tools-openapi.json#GET /analysis
-  - name: list_app_history
-    description: List (max 10) of the most recently uploaded builds for an app.
-    source_operation: openapi/emerge-tools-openapi.json#GET /appHistory
-  - name: get_build_details
-    description: Get details for a specific build.
-    source_operation: openapi/emerge-tools-openapi.json#GET /buildDetails
-  - name: get_pr_comment
-    description: Get the PR comment message for the difference between two builds.
-    source_operation: openapi/emerge-tools-openapi.json#GET /comment
-  - name: export_reaper_deadcode
-    description: Export Reaper unused-code analysis results for a build.
-    source_operation: openapi/emerge-tools-openapi.json#POST /deadCode/export
-  - name: get_perf_test
-    description: Get performance test results for a given test ID.
-    source_operation: openapi/emerge-tools-openapi.json#GET /getPerfTest
-  - name: create_trace_download_url
-    description: Request a signed URL to download a performance test span trace.
-    source_operation: openapi/emerge-tools-openapi.json#POST /trace
-  - name: create_upload
-    description: Request a signed URL for uploading a build artifact.
-    source_operation: openapi/emerge-tools-openapi.json#POST /upload
-  - name: upload_from_link
-    description: Create an upload from a download link and initiate processing.
-    source_operation: openapi/emerge-tools-openapi.json#POST /uploadFromLink
-  - name: get_snapshot_diff
-    description: Get snapshot comparison data between two builds (added/removed/changed/unchanged).
-    source_operation: openapi/emerge-tools-openapi.json#GET /v2/snapshots/diff
-  - name: ignore_snapshot_diff
-    description: Mark a specific snapshot difference as ignored or unignored.
-    source_operation: openapi/emerge-tools-openapi.json#PUT /v2/snapshots/ignore
-  - name: skip_snapshot_check
-    description: Post a successful (skipped) Emerge Snapshots GitHub check for a commit SHA.
-    source_operation: openapi/emerge-tools-openapi.json#POST /v1/snapshots/skip
+- name: get_pr_analysis
+  description: Get app size analysis + performance results and PR comment data for a build (by sha or
+    emergeId).
+  source_operation: openapi/emerge-tools-openapi.json#GET /analysis
+- name: list_app_history
+  description: List (max 10) of the most recently uploaded builds for an app.
+  source_operation: openapi/emerge-tools-openapi.json#GET /appHistory
+- name: get_build_details
+  description: Get details for a specific build.
+  source_operation: openapi/emerge-tools-openapi.json#GET /buildDetails
+- name: get_pr_comment
+  description: Get the PR comment message for the difference between two builds.
+  source_operation: openapi/emerge-tools-openapi.json#GET /comment
+- name: export_reaper_deadcode
+  description: Export Reaper unused-code analysis results for a build.
+  source_operation: openapi/emerge-tools-openapi.json#POST /deadCode/export
+- name: get_perf_test
+  description: Get performance test results for a given test ID.
+  source_operation: openapi/emerge-tools-openapi.json#GET /getPerfTest
+- name: create_trace_download_url
+  description: Request a signed URL to download a performance test span trace.
+  source_operation: openapi/emerge-tools-openapi.json#POST /trace
+- name: create_upload
+  description: Request a signed URL for uploading a build artifact.
+  source_operation: openapi/emerge-tools-openapi.json#POST /upload
+- name: upload_from_link
+  description: Create an upload from a download link and initiate processing.
+  source_operation: openapi/emerge-tools-openapi.json#POST /uploadFromLink
+- name: get_snapshot_diff
+  description: Get snapshot comparison data between two builds (added/removed/changed/unchanged).
+  source_operation: openapi/emerge-tools-openapi.json#GET /v2/snapshots/diff
+- name: ignore_snapshot_diff
+  description: Mark a specific snapshot difference as ignored or unignored.
+  source_operation: openapi/emerge-tools-openapi.json#PUT /v2/snapshots/ignore
+- name: skip_snapshot_check
+  description: Post a successful (skipped) Emerge Snapshots GitHub check for a commit SHA.
+  source_operation: openapi/emerge-tools-openapi.json#POST /v1/snapshots/skip
+deployment:
+  mode: none
+  verified: derived
+  tools: 12
+  checked: '2026-08-12'
+  source: catalog MCP census

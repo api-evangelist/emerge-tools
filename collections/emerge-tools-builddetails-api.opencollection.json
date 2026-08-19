@@ -1,0 +1,56 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Emerge Analysis BuildDetails API",
+    "version": "0.2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Token",
+      "value": "{{X-API-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "BuildDetails",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /buildDetails",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.emergetools.com/buildDetails",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "query",
+                "description": "Bundle id of the app. If buildId (aka emergeId) is not included this will be used to find the most recent upload of an app."
+              },
+              {
+                "name": "buildId",
+                "value": "",
+                "type": "query",
+                "description": "Id of the build to retrieve (aka emergeId)"
+              },
+              {
+                "name": "platform",
+                "value": "",
+                "type": "query",
+                "description": "'ios' or 'android'."
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

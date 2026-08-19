@@ -1,0 +1,45 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Emerge Analysis GetPerfTest API",
+    "version": "0.2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Token",
+      "value": "{{X-API-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "GetPerfTest",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get performance test results",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.emergetools.com/getPerfTest",
+            "params": [
+              {
+                "name": "testId",
+                "value": "",
+                "type": "query",
+                "description": "The test ID, which is returned for example, as the test_id field from /runPerfTest"
+              }
+            ]
+          },
+          "docs": "Given a test ID, get the performance test results for it"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,156 @@
+{
+  "item": [
+    {
+      "id": "3db2f0f6-0d9d-473a-9721-5cdda6cbec80",
+      "name": "BuildDetails",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "dd9f816e-faa8-49ab-a41d-b258f5decf36",
+          "name": "/buildDetails",
+          "request": {
+            "name": "/buildDetails",
+            "description": {},
+            "url": {
+              "path": [
+                "buildDetails"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "appId",
+                  "value": "<string>",
+                  "description": "Bundle id of the app. If buildId (aka emergeId) is not included this will be used to find the most recent upload of an app."
+                },
+                {
+                  "disabled": false,
+                  "key": "buildId",
+                  "value": "<string>",
+                  "description": "Id of the build to retrieve (aka emergeId)"
+                },
+                {
+                  "disabled": false,
+                  "key": "platform",
+                  "value": "<string>",
+                  "description": "'ios' or 'android'."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "371c6829-2142-4571-967d-6edd777ac53d",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "buildDetails"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "appId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "buildId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "platform",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Token",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"appName\": \"string\",\n  \"appVersion\": \"string\",\n  \"appBuild\": \"string\",\n  \"buildId\": \"string\",\n  \"tag\": \"string\",\n  \"size\": {\n    \"installSize\": 7215,\n    \"downloadSize\": 3964\n  },\n  \"modules\": [\n    {\n      \"name\": \"string\",\n      \"path\": \"string\",\n      \"size\": 7454,\n      \"type\": \"swiftModule\"\n    },\n    {\n      \"name\": \"string\",\n      \"path\": \"string\",\n      \"size\": 5002,\n      \"type\": \"objcPrefix\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.emergetools.com/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8f3236af-1c20-4ff3-b38b-354f37fd532b",
+    "name": "Emerge Analysis BuildDetails API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Emerge API allows you to access app size data for individual builds, including breakdowns of size by Swift module, framework, and Obj-C prefix.",
+      "type": "text/plain"
+    }
+  }
+}
