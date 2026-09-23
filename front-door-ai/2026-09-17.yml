@@ -1,0 +1,26 @@
+# Front Door AI Index — emerge-tools — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: emerge-tools
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: emergetools.com
+  final_host: www.emergetools.com
+  ownership: own
+  owner: emerge-tools
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 2
+  host_score: 2
+  density: 3.19
+  words: 626
+  tiers:
+    agentic: 1
+    core: 1
+    model: 0
+  ambiguous: 0
+  top_terms:
+    AI: 1
+    prompts: 1

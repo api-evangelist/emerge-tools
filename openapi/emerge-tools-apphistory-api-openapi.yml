@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Emerge Analysis AppHistory API
+  title: Emerge App History API
   description: The Emerge API allows you to access app size data for individual builds, including breakdowns of size by Swift module, framework, and Obj-C prefix.
   version: 0.2.0
   x-apievangelist:
@@ -46,6 +46,8 @@ paths:
                   $ref: '#/components/schemas/Build'
       tags:
       - AppHistory
+      operationId: getAppHistory
+      x-operation-id-source: derived
 components:
   schemas:
     Build:

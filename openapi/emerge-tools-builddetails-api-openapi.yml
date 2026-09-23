@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Emerge Analysis BuildDetails API
+  title: Emerge Build Details API
   description: The Emerge API allows you to access app size data for individual builds, including breakdowns of size by Swift module, framework, and Obj-C prefix.
   version: 0.2.0
   x-apievangelist:
@@ -42,6 +42,10 @@ paths:
                 $ref: '#/components/schemas/BuildDetails'
       tags:
       - BuildDetails
+      summary: Get build details
+      x-summary-source: derived
+      operationId: getBuildDetails
+      x-operation-id-source: derived
 components:
   schemas:
     BuildDetails:

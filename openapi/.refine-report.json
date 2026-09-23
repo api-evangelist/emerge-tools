@@ -1,16 +1,7 @@
 {
   "provider": "emerge-tools",
   "sources": [
-    "emerge-tools-analysis-api-openapi.yml",
-    "emerge-tools-apphistory-api-openapi.yml",
-    "emerge-tools-builddetails-api-openapi.yml",
-    "emerge-tools-comment-api-openapi.yml",
-    "emerge-tools-deadcode-api-openapi.yml",
-    "emerge-tools-getperftest-api-openapi.yml",
-    "emerge-tools-snapshots-api-openapi.yml",
-    "emerge-tools-trace-api-openapi.yml",
-    "emerge-tools-upload-api-openapi.yml",
-    "emerge-tools-uploadfromlink-api-openapi.yml"
+    "_original/emerge-tools-openapi.json"
   ],
   "outputs": [
     "emerge-tools-analysis-api-openapi.yml",
@@ -27,6 +18,43 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "emerge-tools-openapi.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "emerge-tools-openapi.json: tagged paths GET /analysis -> Analysis",
+    "emerge-tools-openapi.json: tagged paths GET /appHistory -> AppHistory",
+    "emerge-tools-openapi.json: tagged paths GET /buildDetails -> BuildDetails",
+    "emerge-tools-openapi.json: tagged paths GET /comment -> Comment",
+    "emerge-tools-openapi.json: tagged paths POST /deadCode/export -> DeadCode",
+    "emerge-tools-openapi.json: tagged paths GET /getPerfTest -> GetPerfTest",
+    "emerge-tools-openapi.json: tagged paths POST /trace -> Trace",
+    "emerge-tools-openapi.json: tagged paths POST /upload -> Upload",
+    "emerge-tools-openapi.json: tagged paths POST /uploadFromLink -> UploadFromLink",
+    "emerge-tools-openapi.json: tagged paths POST /v1/snapshots/skip -> Snapshots",
+    "emerge-tools-openapi.json: tagged paths GET /v2/snapshots/diff -> Snapshots",
+    "emerge-tools-openapi.json: tagged paths PUT /v2/snapshots/ignore -> Snapshots",
+    "emerge-tools-openapi.json: declared missing tag: Analysis",
+    "emerge-tools-openapi.json: declared missing tag: AppHistory",
+    "emerge-tools-openapi.json: declared missing tag: BuildDetails",
+    "emerge-tools-openapi.json: declared missing tag: Comment",
+    "emerge-tools-openapi.json: declared missing tag: DeadCode",
+    "emerge-tools-openapi.json: declared missing tag: GetPerfTest",
+    "emerge-tools-openapi.json: declared missing tag: Snapshots",
+    "emerge-tools-openapi.json: declared missing tag: Trace",
+    "emerge-tools-openapi.json: declared missing tag: Upload",
+    "emerge-tools-openapi.json: declared missing tag: UploadFromLink",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "emerge-tools-analysis-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "emerge-tools-apphistory-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "emerge-tools-builddetails-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "emerge-tools-comment-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "emerge-tools-deadcode-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "emerge-tools-getperftest-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "emerge-tools-snapshots-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "emerge-tools-trace-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "emerge-tools-upload-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "emerge-tools-uploadfromlink-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
