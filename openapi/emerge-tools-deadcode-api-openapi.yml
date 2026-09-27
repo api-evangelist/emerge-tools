@@ -68,25 +68,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    ReaperExportMetadata:
-      type: object
-      properties:
-        org_id:
-          type: string
-        generated_at:
-          type: string
-        enabled:
-          type: boolean
-        platform:
-          $ref: '#/components/schemas/Platform'
-        app_id:
-          type: string
-        version:
-          type: string
-      required:
-      - org_id
-      - generated_at
-      - enabled
     ReaperExportResponse:
       type: object
       properties:
@@ -122,6 +103,25 @@ components:
             total_pages:
               type: integer
               description: The total number of pages available
+    ReaperExportMetadata:
+      type: object
+      properties:
+        org_id:
+          type: string
+        generated_at:
+          type: string
+        enabled:
+          type: boolean
+        platform:
+          $ref: '#/components/schemas/Platform'
+        app_id:
+          type: string
+        version:
+          type: string
+      required:
+      - org_id
+      - generated_at
+      - enabled
     Platform:
       type: string
       enum:

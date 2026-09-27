@@ -56,23 +56,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    PerfTestBuildDetails:
-      type: object
-      properties:
-        samples:
-          type: array
-          description: Data on each individual test recorded.
-          items:
-            type: object
-            properties:
-              userInfo:
-                type: object
-                properties: {}
-                description: Custom object passed through span notification that can contain additional debugging data.
-              timeTaken:
-                type: number
-                description: Time in seconds that this metric took. Note that this cannot be used for comparisons across multiple tests since the hardware running the app can change.
-            description: An individual test
     PerfTestData:
       required:
       - className
@@ -147,6 +130,23 @@ components:
             os:
               type: string
               description: Operating system version running on the device this performance test was executed on.
+    PerfTestBuildDetails:
+      type: object
+      properties:
+        samples:
+          type: array
+          description: Data on each individual test recorded.
+          items:
+            type: object
+            properties:
+              userInfo:
+                type: object
+                properties: {}
+                description: Custom object passed through span notification that can contain additional debugging data.
+              timeTaken:
+                type: number
+                description: Time in seconds that this metric took. Note that this cannot be used for comparisons across multiple tests since the hardware running the app can change.
+            description: An individual test
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
