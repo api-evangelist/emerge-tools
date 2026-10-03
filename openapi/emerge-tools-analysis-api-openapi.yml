@@ -66,69 +66,57 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    CommentData:
+    PerfTestBuildDetails:
       type: object
       properties:
-        comment:
-          type: string
-        buildDetails:
-          type: object
-          properties:
-            baseBuildDetails:
-              type: object
-              properties:
-                appSize:
-                  type: integer
-                  format: int64
-                appDownloadSize:
-                  type: integer
-                  format: int64
-                appInstallSize:
-                  type: integer
-                  format: int64
-                appVersion:
-                  type: string
-                appBuild:
-                  type: string
-                url:
-                  type: string
-                emergeId:
-                  type: string
-            currentBuildDetails:
-              type: object
-              properties:
-                appSize:
-                  type: integer
-                  format: int64
-                appDownloadSize:
-                  type: integer
-                  format: int64
-                appInstallSize:
-                  type: integer
-                  format: int64
-                appVersion:
-                  type: string
-                appBuild:
-                  type: string
-                url:
-                  type: string
-                emergeId:
-                  type: string
-        buildComparison:
-          type: object
-          properties:
-            sizeDiff:
-              type: integer
-              format: int64
-            fileDiffs:
-              type: array
-              items:
+        samples:
+          type: array
+          description: Data on each individual test recorded.
+          items:
+            type: object
+            properties:
+              userInfo:
                 type: object
-                properties:
-                  name:
-                    type: string
-                  sizeDiff:
-                    type: integer
+                properties: {}
+                description: Custom object passed through span notification that can contain additional debugging data.
+              timeTaken:
+                type: number
+                description: Time in seconds that this metric took. Note that this cannot be used for comparisons across multiple tests since the hardware running the app can change.
+            description: An individual test
+    AnalysisData:
+      type: object
+      properties:
+        headId:
+          type: string
+          description: The Emerge Id of the head build
+        baseId:
+          type: string
+          description: The Emerge Id of the base build
+        appSize:
+          type: object
+          allOf:
+          - type: object
+            properties:
+              status:
+                type: string
+                enum:
+                - PROCESSING
+                - ERROR
+                - DONE
+          - $ref: '#/components/schemas/CommentData'
+        performanceTests:
+          type: array
+          items:
+            $ref: '#/components/schemas/PerfTestData'
+        performanceTestInfo:
+          type: object
+          properties:
+            id:
+              type: string
+              description: testId for the performance test
+            status:
+              type: string
+              description: Can be 'PROCESSING', 'DONE', or 'ERROR'
     PerfTestData:
       required:
       - className
@@ -203,57 +191,69 @@ components:
             os:
               type: string
               description: Operating system version running on the device this performance test was executed on.
-    PerfTestBuildDetails:
+    CommentData:
       type: object
       properties:
-        samples:
-          type: array
-          description: Data on each individual test recorded.
-          items:
-            type: object
-            properties:
-              userInfo:
-                type: object
-                properties: {}
-                description: Custom object passed through span notification that can contain additional debugging data.
-              timeTaken:
-                type: number
-                description: Time in seconds that this metric took. Note that this cannot be used for comparisons across multiple tests since the hardware running the app can change.
-            description: An individual test
-    AnalysisData:
-      type: object
-      properties:
-        headId:
+        comment:
           type: string
-          description: The Emerge Id of the head build
-        baseId:
-          type: string
-          description: The Emerge Id of the base build
-        appSize:
-          type: object
-          allOf:
-          - type: object
-            properties:
-              status:
-                type: string
-                enum:
-                - PROCESSING
-                - ERROR
-                - DONE
-          - $ref: '#/components/schemas/CommentData'
-        performanceTests:
-          type: array
-          items:
-            $ref: '#/components/schemas/PerfTestData'
-        performanceTestInfo:
+        buildDetails:
           type: object
           properties:
-            id:
-              type: string
-              description: testId for the performance test
-            status:
-              type: string
-              description: Can be 'PROCESSING', 'DONE', or 'ERROR'
+            baseBuildDetails:
+              type: object
+              properties:
+                appSize:
+                  type: integer
+                  format: int64
+                appDownloadSize:
+                  type: integer
+                  format: int64
+                appInstallSize:
+                  type: integer
+                  format: int64
+                appVersion:
+                  type: string
+                appBuild:
+                  type: string
+                url:
+                  type: string
+                emergeId:
+                  type: string
+            currentBuildDetails:
+              type: object
+              properties:
+                appSize:
+                  type: integer
+                  format: int64
+                appDownloadSize:
+                  type: integer
+                  format: int64
+                appInstallSize:
+                  type: integer
+                  format: int64
+                appVersion:
+                  type: string
+                appBuild:
+                  type: string
+                url:
+                  type: string
+                emergeId:
+                  type: string
+        buildComparison:
+          type: object
+          properties:
+            sizeDiff:
+              type: integer
+              format: int64
+            fileDiffs:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  sizeDiff:
+                    type: integer
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
