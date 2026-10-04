@@ -219,53 +219,6 @@ paths:
       - Snapshots
 components:
   schemas:
-    SnapshotComparison:
-      type: object
-      description: Comparison between head and base snapshots showing visual differences
-      properties:
-        headSnapshot:
-          $ref: '#/components/schemas/Snapshot'
-          description: The snapshot from the head build
-        baseSnapshot:
-          $ref: '#/components/schemas/Snapshot'
-          description: The snapshot from the base build
-        title:
-          type: string
-          description: Display title for the snapshot comparison
-        subtitle:
-          type: string
-          description: Display subtitle for the snapshot comparison
-        badges:
-          type: array
-          items:
-            type: object
-            properties:
-              title:
-                type: string
-              type:
-                type: string
-          description: Array of badge metadata associated with the snapshot
-        diffImageInfo:
-          type: object
-          properties:
-            imageUrl:
-              type: string
-              format: uri
-              description: Signed S3 URL to the visual diff image highlighting changes
-          description: Information about the diff image showing visual changes
-        height:
-          type: integer
-          description: Height of the comparison image in pixels
-        width:
-          type: integer
-          description: Width of the comparison image in pixels
-        ignored:
-          type: boolean
-          description: Whether this snapshot difference has been marked as ignored
-        diff:
-          type: number
-          format: float
-          description: Percentage difference between the snapshots (0-1 scale)
     Snapshot:
       type: object
       properties:
@@ -322,6 +275,53 @@ components:
           type: string
           format: uri
           description: Signed S3 URL to access the snapshot image
+    SnapshotComparison:
+      type: object
+      description: Comparison between head and base snapshots showing visual differences
+      properties:
+        headSnapshot:
+          $ref: '#/components/schemas/Snapshot'
+          description: The snapshot from the head build
+        baseSnapshot:
+          $ref: '#/components/schemas/Snapshot'
+          description: The snapshot from the base build
+        title:
+          type: string
+          description: Display title for the snapshot comparison
+        subtitle:
+          type: string
+          description: Display subtitle for the snapshot comparison
+        badges:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+              type:
+                type: string
+          description: Array of badge metadata associated with the snapshot
+        diffImageInfo:
+          type: object
+          properties:
+            imageUrl:
+              type: string
+              format: uri
+              description: Signed S3 URL to the visual diff image highlighting changes
+          description: Information about the diff image showing visual changes
+        height:
+          type: integer
+          description: Height of the comparison image in pixels
+        width:
+          type: integer
+          description: Width of the comparison image in pixels
+        ignored:
+          type: boolean
+          description: Whether this snapshot difference has been marked as ignored
+        diff:
+          type: number
+          format: float
+          description: Percentage difference between the snapshots (0-1 scale)
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
