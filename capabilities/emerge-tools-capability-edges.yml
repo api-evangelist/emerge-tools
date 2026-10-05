@@ -1,0 +1,34 @@
+slug: emerge-tools
+provider: Emerge Tools
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 2
+edges:
+- tag: Snapshots
+  spec_file: emerge-tools-snapshots-api-openapi.yml
+  capability_id: BC-4200.50
+  capability_id_l1: BC-4200
+  capability_name: Software Quality Engineering
+  confidence: 0.85
+  evidence: GET /v2/snapshots/diff  "Get snapshot comparison"; PUT /v2/snapshots/ignore  "Mark snapshot
+    difference as ignored"; POST /v1/snapshots/skip  "Skip snapshot run"
+  reason: Visual regression test runs, diffs and triage of differences — plainly automated test suite
+    stewardship and defect triage for a software product.
+- tag: GetPerfTest
+  spec_file: emerge-tools-getperftest-api-openapi.yml
+  capability_id: BC-4200.50
+  capability_id_l1: BC-4200
+  capability_name: Software Quality Engineering
+  confidence: 0.7
+  evidence: GET /getPerfTest  "Get performance test results"; schemas PerfTestBuildDetails, PerfTestData
+  reason: Retrieves performance test results for mobile app builds — test execution results for the product
+    under development, i.e. quality engineering rather than SaaS service capacity management.
