@@ -42,7 +42,7 @@ accessModel:
   method: derived
 specificationVersion: '0.23'
 created: '2026-07-17'
-modified: '2026-07-19'
+modified: '2026-10-06'
 image: https://emergeassets.s3.us-west-1.amazonaws.com/seo/default-seo.png
 x-docs-platform: readme
 x-docs-platform-confidence: high
@@ -244,6 +244,8 @@ apis:
   - type: DataModel
     url: data-model/emerge-tools-data-model.yml
 common:
+- url: https://www.emergetools.com/rss.xml
+  type: BlogRSS
 - type: CapabilityMap
   url: capabilities/emerge-tools-capability-edges.yml
   name: Emerge Tools Business Capability Map
