@@ -68,12 +68,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Platform:
-      type: string
-      enum:
-      - ios
-      - android
-      description: The platform of the app (iOS or Android)
     ReaperExportMetadata:
       type: object
       properties:
@@ -93,6 +87,12 @@ components:
       - org_id
       - generated_at
       - enabled
+    Platform:
+      type: string
+      enum:
+      - ios
+      - android
+      description: The platform of the app (iOS or Android)
     ReaperExportResponse:
       type: object
       properties:
