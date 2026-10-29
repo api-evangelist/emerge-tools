@@ -64,6 +64,135 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Emerge Tools is a company surfaced as a portfolio company of matrix-partners and added to the API Evangelist network as a stub for enrichment. Sector: b2b. This profile is a lead awaiting the enrichment pipeline.
+Emerge Tools is a mobile developer-tools platform used by teams at DoorDash, Square, and Duolingo to ship faster, smaller, better-performing iOS and Android apps. Its products include Size Analysis (monitor and reduce app size with PR alerts and competitor benchmarking), Snapshots (visual regression testing for SwiftUI and Jetpack Compose), Build Distribution (share iOS/Android builds via QR or web), Reaper (runtime dead-code detection), Launch Booster (order-file startup optimization), and Performance testing. The Emerge API (OpenAPI 3.1.0, api.emergetools.com) exposes build upload, size/PR analysis, snapshot comparison, performance results, and Reaper dead-code export, authenticated with an X-API-Token key. Emerge is joining Sentry.
 
-Backed by: matrix-partners — https://emergetools.com
+**Areas:** Company · B2B · Mobile · Developer Tools · App Performance · Testing · iOS · Android · DevOps
+
+## Emerge Tools on APIs.io
+
+Everything profiled for Emerge Tools is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/emerge-tools/](https://apis.io/providers/emerge-tools/)** — or go straight to one of the APIs or properties below.
+
+### APIs (10)
+
+- [Emerge Tools Analysis API](https://apis.io/apis/emerge-tools/emerge-tools-analysis-api/) — The Analysis API from Emerge Tools — 1 operation(s) for analysis.
+- [Emerge Tools AppHistory API](https://apis.io/apis/emerge-tools/emerge-tools-apphistory-api/) — The AppHistory API from Emerge Tools — 1 operation(s) for apphistory.
+- [Emerge Tools BuildDetails API](https://apis.io/apis/emerge-tools/emerge-tools-builddetails-api/) — The BuildDetails API from Emerge Tools — 1 operation(s) for builddetails.
+- [Emerge Tools Comment API](https://apis.io/apis/emerge-tools/emerge-tools-comment-api/) — The Comment API from Emerge Tools — 1 operation(s) for comment.
+- [Emerge Tools DeadCode API](https://apis.io/apis/emerge-tools/emerge-tools-deadcode-api/) — The DeadCode API from Emerge Tools — 1 operation(s) for deadcode.
+- [Emerge Tools GetPerfTest API](https://apis.io/apis/emerge-tools/emerge-tools-getperftest-api/) — The GetPerfTest API from Emerge Tools — 1 operation(s) for getperftest.
+- [Emerge Tools Snapshots API](https://apis.io/apis/emerge-tools/emerge-tools-snapshots-api/) — The Snapshots API from Emerge Tools — 3 operation(s) for snapshots.
+- [Emerge Tools Trace API](https://apis.io/apis/emerge-tools/emerge-tools-trace-api/) — The Trace API from Emerge Tools — 1 operation(s) for trace.
+- [Emerge Tools Upload API](https://apis.io/apis/emerge-tools/emerge-tools-upload-api/) — The Upload API from Emerge Tools — 1 operation(s) for upload.
+- [Emerge Tools UploadFromLink API](https://apis.io/apis/emerge-tools/emerge-tools-uploadfromlink-api/) — The UploadFromLink API from Emerge Tools — 1 operation(s) for uploadfromlink.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [emerge-tools](https://apis.io/servers/emerge-tools/emerge-tools/)
+
+#### Collections (10)
+
+Postman and Open Collection request collections.
+
+- [Emerge Analysis API](https://apis.io/collections/emerge-tools/open-emerge-tools-analysis-api/)
+- [Emerge Analysis AppHistory API](https://apis.io/collections/emerge-tools/open-emerge-tools-apphistory-api/)
+- [Emerge Analysis BuildDetails API](https://apis.io/collections/emerge-tools/open-emerge-tools-builddetails-api/)
+- [Emerge Analysis Comment API](https://apis.io/collections/emerge-tools/open-emerge-tools-comment-api/)
+- [Emerge Analysis DeadCode API](https://apis.io/collections/emerge-tools/open-emerge-tools-deadcode-api/)
+- [Emerge Analysis GetPerfTest API](https://apis.io/collections/emerge-tools/open-emerge-tools-getperftest-api/)
+- [Emerge Analysis Snapshots API](https://apis.io/collections/emerge-tools/open-emerge-tools-snapshots-api/)
+- [Emerge Analysis Trace API](https://apis.io/collections/emerge-tools/open-emerge-tools-trace-api/)
+- [Emerge Analysis Upload API](https://apis.io/collections/emerge-tools/open-emerge-tools-upload-api/)
+- [Emerge Analysis UploadFromLink API](https://apis.io/collections/emerge-tools/open-emerge-tools-uploadfromlink-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Emerge Tools Openapi Overlay](https://apis.io/overlays/emerge-tools/emerge-tools-openapi-overlay/)
+
+#### Security (4)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Emerge Tools Authentication](https://apis.io/security/emerge-tools/emerge-tools-authentication/)
+- [Emerge Tools Domain Security](https://apis.io/security/emerge-tools/emerge-tools-domain-security/)
+- [Emerge Tools Trust Center](https://apis.io/security/emerge-tools/emerge-tools-trust-center/)
+- [Emerge Tools Vulnerability Disclosure](https://apis.io/security/emerge-tools/emerge-tools-vulnerability-disclosure/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://emergetools.com)
+- [Documentation](https://docs.emergetools.com/docs/quickstart)
+- [Getting started](https://docs.emergetools.com/docs/quickstart)
+- [API reference](https://docs.emergetools.com/reference)
+- [Pricing](https://www.emergetools.com/pricing)
+- [Sign up](https://www.emergetools.com/api/auth/login)
+- [Blog](https://www.emergetools.com/blog)
+- [Security](https://www.emergetools.com/security)
+- [Compliance](https://www.emergetools.com/security)
+- [Terms of service](https://www.emergetools.com/Emerge-Tools-Terms-of-Service-03_10_2024.pdf)
+- [Privacy policy](https://www.emergetools.com/Emerge-Tools-Privacy-Policy-03_10_2024.pdf)
+- [GitHub](https://github.com/EmergeTools)
+
+## API Evangelist rating
+
+**Kin Score 46.8** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 46.4 |
+| Contract governance | 18.2 |
+| Operational transparency | 21.1 |
+| Developer ergonomics | 49.4 |
+| Access clarity | 53.9 |
+
+**Agent readiness 24.0** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | paginated |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 35.3** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/emerge-tools/](https://apis.io/providers/emerge-tools/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Emerge Tools: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/emerge-tools/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
